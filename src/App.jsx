@@ -302,17 +302,20 @@ export default function Portfolio() {
           <div ref={bioRef} className="space-y-8">
             <p className={`text-xl leading-relaxed ${textColor} transition-all duration-700 ${bioInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`} style={{ transitionDelay: '0.1s' }}>
-              Hi! I'm Anjali, a second-year Software Engineering student at UofT. I love building things and solving problems through code.
+              Hi! I'm Anjali, a second-year Software Engineering student at UofT. 
+              I love building things, solving problems through code, and making amazing, unfunny jokes.
             </p>
 
             <p className={`text-lg leading-relaxed ${secondaryText} transition-all duration-700 ${bioInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`} style={{ transitionDelay: '0.2s' }}>
-              It all started with a Java game I built (The Dino Game) in my highschool computer class. That project showed me the magic of turning ideas into reality. Since then, I've been hooked on creating things that didn't exist before.
+              My journey in computer science all started with a Java game I built (The Dino Game) in my grade 12 computer class. 
+              That project sparked my interest in coding, eventually leading to me to pursue a career in it.
             </p>
 
             <p className={`text-lg leading-relaxed ${secondaryText} transition-all duration-700 ${bioInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`} style={{ transitionDelay: '0.3s' }}>
-              When I'm not coding, you'll find me either reading, playing guitar, or baking. I believe the best projects aren't just what we make; they're what make us.
+              When I'm not coding, you'll find me either reading, playing guitar, or baking.
+              If I had to leave you with a quote, it would be: "Stay curious, keep building".
             </p>
 
             <div className="pt-8">
