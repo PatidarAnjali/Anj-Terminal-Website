@@ -682,15 +682,22 @@ export default function Portfolio() {
                 )}
               </div>
 
-              <p className="text-neutral-300 italic text-center max-w-sm animate-fadeInUp delay-150 text-sm">
+              <p
+                className="text-neutral-200 italic text-center text-sm"
+                style={{
+                  textShadow: "0 0 8px rgba(0,0,0,0.8)",
+                }}
+              >
                 {randomImage.caption}
               </p>
-<button
+
+
+              <button
                 onClick={() => navigateTo("home")}
                 className={`mt-4 px-5 py-2 ${darkMode
                   ? 'bg-emerald-500 hover:bg-emerald-600'
                   : 'bg-emerald-600 hover:bg-emerald-700'
-                } text-white rounded-lg transition-all flex items-center gap-2 hover:scale-105 shadow-lg hover:shadow-emerald-500/30`}
+                  } text-white rounded-lg transition-all flex items-center gap-2 hover:scale-105 shadow-lg hover:shadow-emerald-500/30`}
               >
                 Restore Terminal
               </button>
@@ -698,17 +705,100 @@ export default function Portfolio() {
           </div>
         )}
 
-
         {currentPage === "maximized" && (
-          <div className="fixed inset-0 bg-neutral-900 flex flex-col items-center justify-center text-white font-mono">
-            <p>Fullscreen Mode</p><br />
-            <p className="text-neutral-300 italic mb-2 text-sm">Coming soon...</p>
-            <button
-              onClick={() => navigateTo("home")}
-              className="mt-4 text-emerald-400 underline hover:opacity-80"
-            >
-              Exit Fullscreen
-            </button>
+          <div className="min-h-screen flex items-center justify-center px-6 py-12">
+            <div className="w-full max-w-5xl bg-neutral-950 text-emerald-400 font-mono text-sm rounded-xl shadow-2xl overflow-hidden animate-fadeInSlow border border-neutral-800">
+
+              {/* Terminal Header */}
+              <div className="flex justify-between items-center px-4 py-3 border-b border-neutral-800 bg-neutral-900">
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => navigateTo("home")}
+                    className="w-3 h-3 bg-red-500 rounded-full hover:scale-110 transition-transform"
+                    title="Close"
+                  ></button>
+                  <button
+                    onClick={() => navigateTo("minimized")}
+                    className="w-3 h-3 bg-yellow-400 rounded-full hover:scale-110 transition-transform"
+                    title="Minimize"
+                  ></button>
+                  <button
+                    onClick={() => navigateTo("home")}
+                    className="w-3 h-3 bg-green-500 rounded-full hover:scale-110 transition-transform"
+                    title="Restore"
+                  ></button>
+                </div>
+                <p className="text-neutral-400 text-xs">anjali@portfolio: ~</p>
+                <div className="w-12"></div>
+              </div>
+
+              {/* Terminal pg */}
+              <div className="overflow-y-auto px-6 py-10 space-y-8 max-h-[70vh]">
+                <h2 className="text-2xl text-emerald-400 mb-4 font-bold">Welcome to my Terminal PG</h2>
+                <p className="text-neutral-400 leading-relaxed max-w-2xl">
+                  This playground (PG) is a sandbox built for running mini demos,
+                  viewing snippets, and exploring my favorite coding experiments.
+                  <br />
+                  Think of it like a dev terminal that evolves as I learn new tools.
+                </p>
+
+                {/* Exeample cmd display */}
+                <div className="bg-neutral-900 border border-neutral-800 rounded-lg p-4 shadow-lg">
+                  <p className="text-emerald-400">
+                    <span className="text-emerald-500">$</span> ls ~/projects
+                  </p>
+                  <div className="mt-2 text-neutral-300">
+                    <p>genai-hackathon/</p>
+                    <p>nuvou-app/</p>
+                    <p>animal-gallery/</p>
+                    <p>lovejoy-lab-site/</p>
+                  </div>
+                </div>
+
+                <div className="bg-neutral-900 border border-neutral-800 rounded-lg p-4 shadow-lg">
+                  <p className="text-emerald-400">
+                    <span className="text-emerald-500">$</span> echo "Stay curious, keep building 🚀"
+                  </p>
+                  <p className="mt-2 text-neutral-300 italic">
+                    Stay curious, keep building 🚀
+                  </p>
+                </div>
+
+                {/* Interactive command input */}
+                <div className="bg-neutral-900 border border-neutral-800 rounded-lg p-4 shadow-lg">
+                  <p className="text-emerald-400 mb-2">
+                    <span className="text-emerald-500">$</span> Try typing a command:
+                  </p>
+                  <input
+                    type="text"
+                    placeholder="Type 'help' for available commands"
+                    className="w-full bg-neutral-950 text-emerald-400 px-3 py-2 rounded border border-neutral-700 focus:border-emerald-500 focus:outline-none"
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        const cmd = e.target.value.toLowerCase().trim();
+                        if (cmd === 'help') {
+                          alert('Available commands:\n- help: Show this message\n- projects: List projects\n- clear: Clear terminal\n- home: Return home');
+                        } else if (cmd === 'projects') {
+                          alert('Projects:\n- genai-hackathon/\n- nuvou-app/\n- animal-gallery/\n- lovejoy-lab-site/');
+                        } else if (cmd === 'home') {
+                          navigateTo('home');
+                        } else if (cmd === 'clear') {
+                          e.target.value = '';
+                        } else if (cmd) {
+                          alert(`Command not found: ${cmd}\nType 'help' for available commands`);
+                        }
+                        if (cmd !== 'clear') e.target.value = '';
+                      }
+                    }}
+                  />
+                </div>
+              </div>
+
+              {/* Footer */}
+              <div className="text-center py-3 text-neutral-600 text-xs border-t border-neutral-800 bg-neutral-900">
+                © {new Date().getFullYear()} Anjali Patidar — Terminal Playground
+              </div>
+            </div>
           </div>
         )}
       </div>
@@ -718,23 +808,23 @@ export default function Portfolio() {
       </footer>
 
       <style>{`
-@keyframes fadeInSlow {
-  from { opacity: 0; transform: scale(0.98); }
-  to { opacity: 1; transform: scale(1); }
-}
+        @keyframes fadeInSlow {
+          from { opacity: 0; transform: scale(0.98); }
+          to { opacity: 1; transform: scale(1); }
+        }
 
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+        @keyframes fadeInUp {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
 
-.animate-fadeInSlow {
-  animation: fadeInSlow 0.8s ease-out forwards;
-}
+        .animate-fadeInSlow {
+          animation: fadeInSlow 0.8s ease-out forwards;
+        }
 
-.animate-fadeInUp {
-  animation: fadeInUp 0.8s ease-out forwards;
-}
+        .animate-fadeInUp {
+          animation: fadeInUp 0.8s ease-out forwards;
+        }
       `}</style>
     </div>
   );
