@@ -272,10 +272,27 @@ export default function Portfolio() {
 
     // things I have done
     const journeyItems = [
-      { year: '2024', title: 'Technology Director @ GDSC', desc: 'Led website development for GENAI Genesis hackathon' },
-      { year: '2024', title: 'Web Developer @ UTSC', desc: 'Built the Lovejob Lab website with focus on accessibility' },
-      { year: '2023', title: 'Started at UofT', desc: 'Began my Computer Science journey' },
-      { year: '2022', title: 'The Dino Game', desc: 'My first project - where it all began' }
+      {
+        title: 'Computer Science Enrichment Club (CSEC)',
+        positions: [
+          { year: "2025-'26", role: 'VP of Marketing' },
+          { year: "2024-'25", role: 'Technology Director' }
+        ]
+      },
+      {
+        year: "2024-'25",
+        title: 'Google Developer Groups (GDG)',
+        positions: [
+          { year: "2025-'26", role: 'Technology Director' }
+        ]
+      },
+      {
+        year: "2024-'25",
+        title: 'UofT Scarbrough (Deparment of Biological & Physical Sciences)',
+        positions: [
+          { year: "2025-'26", role: 'Web Developer for Lovejoy Lab' }
+        ]
+      },
     ];
 
     return (
@@ -302,13 +319,13 @@ export default function Portfolio() {
           <div ref={bioRef} className="space-y-8">
             <p className={`text-xl leading-relaxed ${textColor} transition-all duration-700 ${bioInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`} style={{ transitionDelay: '0.1s' }}>
-              Hi! I'm Anjali, a second-year Software Engineering student at UofT. 
+              Hi! I'm Anjali, a second-year Software Engineering student at UofT.
               I love building things, solving problems through code, and making amazing, unfunny jokes.
             </p>
 
             <p className={`text-lg leading-relaxed ${secondaryText} transition-all duration-700 ${bioInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`} style={{ transitionDelay: '0.2s' }}>
-              My journey in computer science all started with a Java game I built (The Dino Game) in my grade 12 computer class. 
+              My journey in computer science all started with a Java game I built (The Dino Game) in my grade 12 computer class.
               That project sparked my interest in coding, eventually leading to me to pursue a career in it.
             </p>
 
@@ -319,13 +336,54 @@ export default function Portfolio() {
             </p>
 
             <div className="pt-8">
-              <h2 className={`text-2xl font-bold mb-8 ${textColor} transition-all duration-700 ${bioInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                }`} style={{ transitionDelay: '0.4s' }}>Journey</h2>
-              <div className="space-y-6 relative pl-8">
-                {journeyItems.map((item, i) => (
-                  <JourneyItem key={i} item={item} index={i} />
-                ))}
-              </div>
+
+              {
+                <div className="pt-8">
+                  <h2 className={`text-2xl font-bold mb-8 ${textColor} transition-all duration-700 ${bioInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                    }`} style={{ transitionDelay: '0.4s' }}>Journey</h2>
+
+                  <div className="relative pl-8">
+                    {/* vertical timeline line */}
+                    <div className={`absolute left-0 top-0 bottom-0 w-0.5 ${darkMode ? 'bg-neutral-800' : 'bg-neutral-200'}`}></div>
+
+                    <div className="space-y-8">
+                      {journeyItems.map((item, i) => (
+                        <div key={i} className="relative">
+                          {/* timeline dot */}
+                          <div className={`absolute -left-[36.5px] top-1 w-3 h-3 rounded-full ${darkMode ? 'bg-emerald-400' : 'bg-emerald-600'} ring-4 ${darkMode ? 'ring-slate-950' : 'ring-neutral-50'}`}></div>
+
+                          <div>
+                            <h3 className={`text-xl font-bold mb-3 ${accentColor}`}>
+                              {item.title}
+                            </h3>
+
+                            {item.positions ? (
+                              <div className="space-y-2">
+                                {item.positions.map((pos, j) => (
+                                  <div
+                                    key={j}
+                                    className="flex items-baseline justify-between gap-4 group hover:translate-x-1 transition-transform"
+                                  >
+                                    <span className={`${secondaryText}`}>{pos.role}</span>
+                                    <span className={`text-sm ${secondaryText} whitespace-nowrap`}>{pos.year}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            ) : (
+                              <div className="flex items-baseline justify-between gap-4">
+                                <span className={`${secondaryText}`}>{item.desc}</span>
+                                <span className={`text-sm ${secondaryText} whitespace-nowrap`}>{item.year}</span>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+              }
+
             </div>
 
           </div>
@@ -353,9 +411,14 @@ export default function Portfolio() {
         </div>
         <p className={`text-sm mb-4 ${accentColor} font-medium`}>{project.tech}</p>
         <p className={`text-lg leading-relaxed mb-4 ${secondaryText}`}>{project.desc}</p>
-        <button className={`${accentColor} hover:underline flex items-center gap-2 transition-all hover:gap-3`}>
+        <a
+          href={project.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`${accentColor} hover:underline flex items-center gap-2 transition-all hover:gap-3`}
+        >
           View Project <ExternalLink size={16} />
-        </button>
+        </a>
       </div>
     );
 
@@ -370,19 +433,22 @@ export default function Portfolio() {
         title: 'The Dino Game',
         tech: 'Java • Swing • AWT',
         desc: 'A 2D game with collision detection and smooth animations. My first real project that sparked my passion for coding.',
-        year: '2022'
+        year: '2022',
+        link: 'https://github.com/PatidarAnjali/Dino-Game'
       },
       {
         title: 'Nuvou',
         tech: 'MEAN Stack • MongoDB',
         desc: 'Full-stack journaling app for artists. Features authentication, CRUD operations, and portfolio sharing.',
-        year: '2024'
+        year: '2024',
+        link: 'https://github.com/PatidarAnjali/nuvou-newapp-frontend'
       },
       {
         title: 'Animal Paintings Gallery',
         tech: 'Angular • TypeScript',
         desc: 'Interactive art gallery with dynamic rendering and smooth transitions.',
-        year: '2023'
+        year: '2023',
+        link: 'https://github.com/PatidarAnjali/animal-paintings'
       }
     ];
 
@@ -463,8 +529,8 @@ export default function Portfolio() {
             >
               <button
                 className={`px-6 py-3 ${darkMode
-                    ? 'bg-emerald-500 hover:bg-emerald-600'
-                    : 'bg-emerald-600 hover:bg-emerald-700'
+                  ? 'bg-emerald-500 hover:bg-emerald-600'
+                  : 'bg-emerald-600 hover:bg-emerald-700'
                   } text-white rounded-lg transition-all flex items-center gap-2 hover:scale-105 ${headerInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                   }`}
                 style={{ transitionDelay: '0.2s' }}
@@ -507,7 +573,17 @@ export default function Portfolio() {
               </div>
             </ResumeSection>
 
-            {/* Experience */}
+            {/* Education */}
+            <ResumeSection title="Education" index={2}>
+              <h2 className={`text-2xl font-bold mb-6 ${textColor}`}>Education</h2>
+              <div className="hover:translate-x-2 transition-transform">
+                <h3 className={`text-lg font-bold ${textColor}`}>University of Toronto</h3>
+                <p className={accentColor}>Software Engineering Specialist</p>
+                <p className={secondaryText}>2023 - Present</p>
+              </div>
+            </ResumeSection>
+
+            {/* Experience
             <ResumeSection title="Experience" index={1}>
               <h2 className={`text-2xl font-bold mb-6 ${textColor}`}>Experience</h2>
               <div className="space-y-6">
@@ -543,17 +619,7 @@ export default function Portfolio() {
                   </div>
                 ))}
               </div>
-            </ResumeSection>
-
-            {/* Education */}
-            <ResumeSection title="Education" index={2}>
-              <h2 className={`text-2xl font-bold mb-6 ${textColor}`}>Education</h2>
-              <div className="hover:translate-x-2 transition-transform">
-                <h3 className={`text-lg font-bold ${textColor}`}>University of Toronto</h3>
-                <p className={accentColor}>Software Engineering Specialist</p>
-                <p className={secondaryText}>2023 - Present</p>
-              </div>
-            </ResumeSection>
+            </ResumeSection> */}
           </div>
 
         </div>
@@ -583,51 +649,53 @@ export default function Portfolio() {
         )}
 
         {currentPage === "minimized" && (
-          <div className="fixed inset-0 flex flex-col items-center justify-center bg-neutral-950 text-white font-mono">
-            <p className="text-neutral-400 mb-3">Quick fact while I'm minimized…</p>
-            {randomImage.link ? (
-              <div className="flex flex-col items-center">
-                <a
-                  href={randomImage.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:opacity-90 transition"
-                >
+          <div className="fixed inset-0 flex flex-col items-center justify-center bg-neutral-950 text-white font-mono animate-fadeInSlow">
+            <div className="flex flex-col items-center animate-fadeInUp space-y-4">
+              <p className="text-neutral-400 mb-2 text-sm tracking-wide">Quick fact while I'm minimized…</p>
+
+              <div className="relative group">
+                {randomImage.link ? (
+                  <a
+                    href={randomImage.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:opacity-95 transition duration-500 ease-in-out"
+                  >
+                    <img
+                      src={randomImage.src}
+                      alt={randomImage.caption}
+                      className="rounded-xl shadow-2xl w-72 h-72 object-cover transform transition-all duration-700 group-hover:scale-105 group-hover:rotate-1"
+                    />
+                  </a>
+                ) : (
                   <img
                     src={randomImage.src}
                     alt={randomImage.caption}
-                    className="rounded-lg shadow-lg w-72 h-72 object-cover mb-4"
+                    className="rounded-xl shadow-2xl w-72 h-72 object-cover transform transition-all duration-700 group-hover:scale-105 group-hover:rotate-1"
                   />
-                </a>
-                <p className="text-neutral-400 italic text-xs animate-pulse mb-1">
-                  psst... click the image 👀
-                </p>
-                <p className="text-neutral-300 italic mb-2 text-sm">
-                  {randomImage.caption}
-                </p>
-              </div>
-            ) : (
-              <>
-                <img
-                  src={randomImage.src}
-                  alt={randomImage.caption}
-                  className="rounded-lg shadow-lg w-72 h-72 object-cover mb-4"
-                />
-                <p className="text-neutral-300 italic mb-2 text-sm">
-                  {randomImage.caption}
-                </p>
-              </>
-            )}
+                )}
 
-            <br />
-            <button
-              onClick={() => navigateTo("home")}
-              className="px-4 py-2 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 transition"
-            >
-              Restore Terminal
-            </button>
+                {randomImage.link && (
+                  <p className="absolute bottom-3 left-0 right-0 text-center text-neutral-400 text-xs italic animate-pulse">
+                    psst... click the image 👀
+                  </p>
+                )}
+              </div>
+
+              <p className="text-neutral-300 italic text-center max-w-sm animate-fadeInUp delay-150 text-sm">
+                {randomImage.caption}
+              </p>
+
+              <button
+                onClick={() => navigateTo("home")}
+                className="mt-4 px-5 py-2 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg transition-all duration-500 ease-in-out transform hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/30"
+              >
+                Restore Terminal
+              </button>
+            </div>
           </div>
         )}
+
 
         {currentPage === "maximized" && (
           <div className="fixed inset-0 bg-neutral-900 flex flex-col items-center justify-center text-white font-mono">
@@ -648,21 +716,23 @@ export default function Portfolio() {
       </footer>
 
       <style>{`
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        @keyframes slideUp {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fadeIn { 
-          animation: fadeIn 0.6s ease-out forwards; 
-          opacity: 0; 
-        }
-        .animate-slideUp { 
-          animation: slideUp 0.6s ease-out forwards; 
-        }
+@keyframes fadeInSlow {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeInSlow {
+  animation: fadeInSlow 0.8s ease-out forwards;
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
       `}</style>
     </div>
   );
