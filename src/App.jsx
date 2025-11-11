@@ -685,10 +685,12 @@ export default function Portfolio() {
               <p className="text-neutral-300 italic text-center max-w-sm animate-fadeInUp delay-150 text-sm">
                 {randomImage.caption}
               </p>
-
-              <button
+<button
                 onClick={() => navigateTo("home")}
-                className="mt-4 px-5 py-2 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg transition-all duration-500 ease-in-out transform hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/30"
+                className={`mt-4 px-5 py-2 ${darkMode
+                  ? 'bg-emerald-500 hover:bg-emerald-600'
+                  : 'bg-emerald-600 hover:bg-emerald-700'
+                } text-white rounded-lg transition-all flex items-center gap-2 hover:scale-105 shadow-lg hover:shadow-emerald-500/30`}
               >
                 Restore Terminal
               </button>
