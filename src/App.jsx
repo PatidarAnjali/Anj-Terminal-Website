@@ -757,10 +757,10 @@ export default function Portfolio() {
 
                 <div className="bg-neutral-900 border border-neutral-800 rounded-lg p-4 shadow-lg">
                   <p className="text-emerald-400">
-                    <span className="text-emerald-500">$</span> echo "Stay curious, keep building 🚀"
+                    <span className="text-emerald-500">$</span> echo "Stay curious, keep building"
                   </p>
                   <p className="mt-2 text-neutral-300 italic">
-                    Stay curious, keep building 🚀
+                    Stay curious, keep building
                   </p>
                 </div>
 
