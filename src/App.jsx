@@ -280,17 +280,15 @@ export default function Portfolio() {
         ]
       },
       {
-        year: "2024-'25",
         title: 'Google Developer Groups (GDG)',
         positions: [
-          { year: "2025-'26", role: 'Technology Director' }
+          { year: "2024-'25", role: 'Technology Director' }
         ]
       },
       {
-        year: "2024-'25",
-        title: 'UofT Scarbrough (Deparment of Biological & Physical Sciences)',
+        title: 'UofT Scarborough (Department of Biological & Physical Sciences)',
         positions: [
-          { year: "2025-'26", role: 'Web Developer for Lovejoy Lab' }
+          { year: "2024-'25", role: 'Web Developer for Lovejoy Lab' }
         ]
       },
     ];
@@ -320,12 +318,12 @@ export default function Portfolio() {
             <p className={`text-xl leading-relaxed ${textColor} transition-all duration-700 ${bioInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`} style={{ transitionDelay: '0.1s' }}>
               Hi! I'm Anjali, a second-year Software Engineering student at UofT.
-              I love building things, solving problems through code, and making amazing, unfunny jokes.
+              I love building things, solving problems through code, and making amazing, really funny jokes.
             </p>
 
             <p className={`text-lg leading-relaxed ${secondaryText} transition-all duration-700 ${bioInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`} style={{ transitionDelay: '0.2s' }}>
-              My journey in computer science all started with a Java game I built (The Dino Game) in my grade 12 computer class.
+              My journey in computer science all started with a Java game I built (The Dino Game) in my grade 12 computer science class.
               That project sparked my interest in coding, eventually leading to me to pursue a career in it.
             </p>
 
@@ -430,13 +428,6 @@ export default function Portfolio() {
 
     const projects = [
       {
-        title: 'The Dino Game',
-        tech: 'Java • Swing • AWT',
-        desc: 'A 2D game with collision detection and smooth animations. My first real project that sparked my passion for coding.',
-        year: '2022',
-        link: 'https://github.com/PatidarAnjali/Dino-Game'
-      },
-      {
         title: 'Nuvou',
         tech: 'MEAN Stack • MongoDB',
         desc: 'Full-stack journaling app for artists. Features authentication, CRUD operations, and portfolio sharing.',
@@ -449,7 +440,14 @@ export default function Portfolio() {
         desc: 'Interactive art gallery with dynamic rendering and smooth transitions.',
         year: '2023',
         link: 'https://github.com/PatidarAnjali/animal-paintings'
-      }
+      },
+      {
+        title: 'The Dino Game',
+        tech: 'Java • Swing • AWT',
+        desc: 'A 2D game with collision detection and smooth animations. My first real project that sparked my passion for coding.',
+        year: '2022',
+        link: 'https://github.com/PatidarAnjali/Dino-Game'
+      },
     ];
 
     return (
@@ -579,7 +577,7 @@ export default function Portfolio() {
               <div className="hover:translate-x-2 transition-transform">
                 <h3 className={`text-lg font-bold ${textColor}`}>University of Toronto</h3>
                 <p className={accentColor}>Software Engineering Specialist</p>
-                <p className={secondaryText}>2023 - Present</p>
+                <p className={secondaryText}>2024 - Present</p>
               </div>
             </ResumeSection>
 
