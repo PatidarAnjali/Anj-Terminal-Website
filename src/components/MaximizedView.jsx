@@ -3,9 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 export default function MaximizedView({ navigateTo }) {
   const [currentDir, setCurrentDir] = useState('~');
   const [history, setHistory] = useState([
-    { type: 'output', text: '╔════════════════════════════════════════════════════════════╗' },
-    { type: 'output', text: '║        Welcome to Anjali\'s Terminal Playground             ║' },
-    { type: 'output', text: '╚════════════════════════════════════════════════════════════╝' },
+    { type: 'output', text: 'Welcome to Anjali\'s Terminal Playground' },
     { type: 'output', text: '' },
     { type: 'output', text: 'This playground (PG) is a sandbox built for running mini demos,' },
     { type: 'output', text: 'viewing snippets, and exploring my favorite coding experiments.' },
