@@ -47,7 +47,7 @@ export default function HomePage({ darkMode, setDarkMode, navigateTo, colors, ha
                     <span className={colors.accentColor}>role:</span> Software Engineering Student @ UofT
                   </div>
                   <div className={colors.secondaryText}>
-                    <span className={colors.accentColor}>interests:</span> AI/ML, Full-Stack Dev, and coffee
+                    <span className={colors.accentColor}>interests:</span> AI/ML, Full-Stack Dev, food, & doomscrolling
                   </div>
                 </div>
 
