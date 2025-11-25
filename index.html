@@ -8,15 +8,6 @@
     <meta name="google-site-verification" content="wZklWITqoBOpkFVZ995nchBsBIAy3l7NoimFOjq34mo" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@algolia/algoliasearch-netlify-frontend@1/dist/algoliasearchNetlify.css" />
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@algolia/algoliasearch-netlify-frontend@1/dist/algoliasearchNetlify.js"></script>
-    <script type="module">
-      import.meta.env.VITE_ALGOLIA_APP_ID && algoliasearchNetlify({
-        appId: import.meta.env.VITE_ALGOLIA_APP_ID,
-        apiKey: import.meta.env.VITE_ALGOLIA_SEARCH_KEY,
-        siteId: import.meta.env.VITE_ALGOLIA_SITE_ID,
-        branch: 'main',
-        selector: 'div#search',
-      });
-    </script>
   </head>
   <body>
     <div id="root"></div>
