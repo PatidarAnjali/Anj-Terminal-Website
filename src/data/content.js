@@ -43,6 +43,13 @@ export const journeyItems = [
 
 export const projects = [
   {
+    title: 'SmartAir',
+    tech: 'Java • Android Studio • XML',
+    desc: 'SmartAir is an Android app that helps kids manage asthma and lets parents track symptoms, medication, and PEF zones, with shareable health reports.',
+    year: '2025',
+    link: 'https://github.com/kr1shap/smart-air'
+  },
+  {
     title: 'Nuvou',
     tech: 'MEAN Stack • MongoDB',
     desc: 'Full-stack journaling app for artists. Features authentication, CRUD operations, and portfolio sharing.',
@@ -66,7 +73,8 @@ export const projects = [
 ];
 
 export const skills = {
-  Languages: ['Java', 'TypeScript', 'JavaScript', 'Python', 'C', 'C++'],
+  Languages: ['Java', 'Python', 'C', 'C++', 'Javascript', 'Typescript'],
   Frontend: ['React', 'Angular', 'HTML/CSS', 'Bootstrap'],
-  Backend: ['Node.js', 'MongoDB', 'REST APIs', 'Git']
+  Backend: ['Node.js', 'MongoDB', 'REST APIs', 'Git'],
+  // AI: ['TensorFlow', 'OpenCV'], // currently learning
 };
