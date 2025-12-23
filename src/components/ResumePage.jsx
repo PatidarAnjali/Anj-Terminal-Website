@@ -83,12 +83,12 @@ export default function ResumePage({ darkMode, navigateTo, colors }) {
            >
           
              {/* category toggle btns */}
-             <div className="inline-flex gap-2 mb-6 rounded-md bg-gradient-to-r from-emerald-500/10 to-teal-500/10 backdrop-blur-sm">
+             <div className="flex flex-wrap gap-2 mb-6 rounded-md backdrop-blur-sm">
                {Object.keys(skills).map((category) => (
                  <button
                    key={category}
                    onClick={() => setActiveCategory(category)}
-                   className={`relative px-5 py-2 rounded-md font-medium transition-all duration-467 ${
+                   className={`relative px-5 py-2 rounded-md font-medium transition-all duration-467 whitespace-nowrap ${
                      activeCategory === category
                        ? darkMode
                          ? 'bg-emerald-500 hover:bg-emerald-600 text-white'
