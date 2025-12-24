@@ -19,12 +19,12 @@ export default function MinimizedView({ darkMode, navigateTo, randomImage }) {
             <img
               src={randomImage.src}
               alt={randomImage.caption}
-              className="rounded-xl shadow-2xl w-72 h-72 object-cover transform transition-all duration-700 group-hover:scale-105 group-hover:rotate-1"
+              className="rounded-xl shadow-6xl w-72 h-72 object-cover transform transition-all duration-700 group-hover:scale-105 group-hover:rotate-1"
             />
           )}
 
           {randomImage.link && (
-            <p className="absolute bottom-3 left-0 right-0 text-center text-neutral-400 text-xs italic animate-pulse">
+            <p className="absolute bottom-3 left-0 right-0 text-center text-400 text-xs italic animate-pulse">
               psst... click the image 👀
             </p>
           )}
