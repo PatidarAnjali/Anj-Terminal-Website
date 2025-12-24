@@ -55,7 +55,15 @@ export const projects = [
     desc: 'Role-based Android app for asthma management using Firebase Auth and Firestore, with real-time logging, alerts, and PDF/CSV reports.',
     year: '2025',
     link: 'https://github.com/kr1shap/smart-air'
-  }, {
+  }, 
+  {
+    title: 'EventFlow API',
+    tech: 'Node.js • Express • PostgreSQL • Docker • Redis',
+    desc: 'Event aggregation platform with automated web scraping using Puppeteer and Cheerio. Features REST API with caching, rate limiting, and scheduled scraping jobs via Bull queues.',
+    year: '2025',
+    link: 'https://github.com/PatidarAnjali/Eventflow-API'
+  }, 
+  {
     title: 'Nuvou',
     tech: 'MEAN Stack • MongoDB',
     desc: 'Full-stack journaling app for artists. Features authentication, CRUD operations, and portfolio sharing.',
