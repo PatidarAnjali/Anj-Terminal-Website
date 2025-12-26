@@ -21,7 +21,7 @@ export const randomImages = [
 
 
 export const journeyItems = [
-    {
+  {
     title: 'UofT Scarborough',
     positions: [
       { year: "2026 - Present", role: 'CSCA48 Teaching Assistant' },
@@ -55,14 +55,21 @@ export const projects = [
     desc: 'Role-based Android app for asthma management using Firebase Auth and Firestore, with real-time logging, alerts, and PDF/CSV reports.',
     year: '2025',
     link: 'https://github.com/kr1shap/smart-air'
-  }, 
+  },
   {
     title: 'EventFlow API',
     tech: 'Node.js • Express • PostgreSQL • Docker • Redis',
     desc: 'Event aggregation platform with automated web scraping using Puppeteer and Cheerio. Features REST API with caching, rate limiting, and scheduled scraping jobs via Bull queues.',
     year: '2025',
     link: 'https://github.com/PatidarAnjali/Eventflow-API'
-  }, 
+  },
+  {
+    title: 'Job Application CRM',
+    tech: 'React • Vite • Tailwind CSS • dnd-kit • Recharts',
+    desc: 'React-based job application tracker with a drag-and-drop workflow & analytics dashboard to visualize application progress.',
+    year: '2025',
+    link: 'https://github.com/PatidarAnjali/Job-App-CRM'
+  },
   {
     title: 'Nuvou',
     tech: 'MEAN Stack • MongoDB',
