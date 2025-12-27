@@ -65,6 +65,14 @@ export const projects = [
     link: 'https://github.com/PatidarAnjali/Eventflow-API',
     filter: 'API'
   },
+    {
+    title: 'Movie Recommendation Model',
+    tech: 'Python • FastAPI • scikit-learn • Pandas • NumPy',
+    desc: 'AI-powered recommendation engine implementing collaborative filtering, matrix factorization (SVD), and content-based filtering. Feat.: RESTful API with multiple ML algorithms and real-time predictions.',
+    year: '2025',
+    link: 'https://github.com/PatidarAnjali/Recommendation-Model',
+    filter: 'ML/AI'
+  },
   {
     title: 'Job Application CRM',
     tech: 'React • Vite • Tailwind CSS • dnd-kit • Recharts',
