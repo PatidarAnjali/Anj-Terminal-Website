@@ -70,7 +70,7 @@ export const projects = [
     tech: 'Python • FastAPI • scikit-learn • Pandas • NumPy',
     desc: 'AI-powered recommendation engine implementing collaborative filtering, matrix factorization (SVD), and content-based filtering. Feat.: RESTful API with multiple ML algorithms and real-time predictions.',
     year: '2025',
-    link: 'https://github.com/PatidarAnjali/Recommendation-Model',
+    link: 'https://github.com/PatidarAnjali/Movie-Rec-System',
     filter: 'ML/AI'
   },
   {
