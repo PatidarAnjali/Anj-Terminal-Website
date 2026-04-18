@@ -54,12 +54,26 @@ export default function AboutPage({ darkMode, navigateTo, colors }) {
                       </h3>
 
                       <div className="space-y-2">
+                      
                         {item.positions.map((pos, j) => (
                           <div key={j} className="flex items-baseline justify-between gap-4 group hover:translate-x-1 transition-transform">
-                            <span className={colors.secondaryText}>{pos.role}</span>
+                            <span className={colors.secondaryText}>
+                              {pos.role}
+                              {pos.link && (
+                                <a
+                                  href={pos.link}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className={`ml-2 text-sm font-medium ${colors.accentColor} hover:underline`}
+                                >
+                                  {pos.linkLabel || 'Link'}
+                                </a>
+                              )}
+                            </span>
                             <span className={`text-sm ${colors.secondaryText} whitespace-nowrap`}>{pos.year}</span>
                           </div>
                         ))}
+
                       </div>
                     </div>
                   </div>

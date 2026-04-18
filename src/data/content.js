@@ -24,28 +24,37 @@ export const journeyItems = [
   {
     title: 'UofT Scarborough',
     positions: [
-      { year: "2026 - Present", role: 'CSCA48 Teaching Assistant' },
+      { year: "Jan '26 - Present", role: 'CSCA48 Teaching Assistant' },
     ]
   },
   {
     title: 'Computer Science Enrichment Club (CSEC)',
     positions: [
-      { year: "2025 - Present", role: 'VP of Marketing' },
-      { year: "2024 - '25", role: 'Technology Director' }
+      { year: "Oct '25 - Present", role: 'VP of Marketing' },
+      { year: "Oct '24 - May '25", role: 'Technology Director' }
     ]
   },
   {
     title: 'Google Developer Groups (GDG)',
     positions: [
-      { year: "2024 - '25", role: 'Technology Director' }
+      { year: "Oct '24 - May '25", role: 'Technology Director' }
     ]
   },
   {
     title: 'UofT Scarborough (Department of Biological & Physical Sciences)',
     positions: [
-      { year: "2024 - '25", role: 'Web Developer for Lovejoy Lab' }
+      { year: "Oct '24 - May '25", role: 'Web Developer for Lovejoy Lab' }
     ]
   },
+  {
+    title: 'DigiPix Inc.',
+    positions: [
+      { year: "Jan '23 - Aug '23", role: 'Software Engineering and SEO co-op student', 
+        link: "https://www.linkedin.com/feed/update/urn:li:ugcPost:7077007488620924929",
+        linkLabel: "(LinkedIn post »)"
+      }
+    ]
+  }
 ];
 
 export const projects = [
