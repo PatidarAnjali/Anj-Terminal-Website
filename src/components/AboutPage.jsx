@@ -2,7 +2,7 @@ import React from "react";
 import { useInView } from "../utils/hooks";
 import BackButton from "./shared/BackButton";
 import PageHeader from "./shared/PageHeader";
-import HogwartsJourney from "./HogwartsJourney";
+import HogwartsJourney from "./train/HogwartsJourney";
 
 export default function AboutPage({ darkMode, navigateTo, colors }) {
   const [bioRef, bioInView] = useInView(0.1);

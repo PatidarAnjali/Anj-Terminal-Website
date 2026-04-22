@@ -1,0 +1,36 @@
+/* Hogwarts train animations */
+
+@keyframes wheelSpin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes steamPuff {
+  0% { transform: translateY(0) scale(0.5); opacity: 0.75; }
+  100% { transform: translateY(-90px) scale(2.6); opacity: 0;    }
+}
+
+/* wheel group: paused by default, runs when train is rolling */
+.wheel-group {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: wheelSpin 0.42s linear infinite;
+  animation-play-state: paused;
+}
+
+.train-rolling .wheel-group {
+  animation-play-state: running;
+}
+
+/* invisible scroll sentinel that drives the track scroll */
+.hj-sentinel {
+  position: absolute;
+  inset: 0;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  opacity: 0;
+  z-index: 20;
+  cursor: default !important;
+}
+
+.hj-sentinel::-webkit-scrollbar { display: none; }
+.hj-sentinel { -ms-overflow-style: none; scrollbar-width: none; }
