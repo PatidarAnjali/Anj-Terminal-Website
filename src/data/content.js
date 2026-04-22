@@ -22,39 +22,59 @@ export const randomImages = [
 
 export const journeyItems = [
   {
-    title: 'UofT Scarborough',
-    positions: [
-      { year: "Jan '26 - Present", role: 'CSCA48 Teaching Assistant' },
-    ]
+    year: "Jan '23",
+    label: "Jan '23 - Aug '23",
+    station: "Software Engineering & SEO Co-op", // role
+    org: "DigiPix Inc.",
+    description:
+      "First industry co-op; built SEO tooling and engineering features in a fast-paced startup environment.",
+    link: null,
   },
   {
-    title: 'Computer Science Enrichment Club (CSEC)',
-    positions: [
-      { year: "Oct '25 - Present", role: 'VP of Marketing' },
-      { year: "Oct '24 - May '25", role: 'Technology Director' }
-    ]
+    year: "Oct '24",
+    label: "Oct '24 - May '25",
+    station: "Associate Developer",
+    org: "Google Developer Groups (GDG)",
+    description:
+      "Led technical direction for the GDG campus chapter, organising developer events and driving community growth.",
+    link: null,
   },
   {
-    title: 'Google Developer Groups (GDG)',
-    positions: [
-      { year: "Oct '24 - May '25", role: 'Technology Director' }
-    ]
+    year: "Oct '25",
+    label: "Oct '25 - Present",
+    station: "Technology Director",
+    org: "Computer Science Enrichment Club",
+    description:
+      "will add soon",
+    link: null,
   },
   {
-    title: 'UofT Scarborough (Department of Biological & Physical Sciences)',
-    positions: [
-      { year: "Oct '24 - May '25", role: 'Web Developer for Lovejoy Lab' }
-    ]
+    year: "Oct '24",
+    label: "Oct '24 - May '25",
+    station: "Web Developer",
+    org: "UofT Scarborough - Lovejoy Lab",
+    description:
+      "Built out the department website for the Biological & Physical Sciences Lovejoy Lab research group.",
+    link: null,
   },
   {
-    title: 'DigiPix Inc.',
-    positions: [
-      { year: "Jan '23 - Aug '23", role: 'Software Engineering and SEO co-op student', 
-        link: "https://www.linkedin.com/feed/update/urn:li:ugcPost:7077007488620924929",
-        linkLabel: "(LinkedIn post »)"
-      }
-    ]
-  }
+    year: "Oct '25",
+    label: "Oct '25 - Present",
+    station: "VP of Marketing",
+    org: "Computer Science Enrichment Club",
+    description:
+      "will come soon",
+    link: null,
+  },
+  {
+    year: "Jan '26",
+    label: "Jan '26 - Present",
+    station: "CSCA48 Teaching Assistant", // role
+    org: "UofT Scarborough",
+    description:
+      "Supporting the next generation of programmers, helping students find their footing in intro CS courses.",
+    link: null, // ADD soon
+  },
 ];
 
 export const projects = [
