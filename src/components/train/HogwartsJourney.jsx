@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { journeyItems } from "../../data/content";
-import HogwartsExpressSVG, { Steam } from "./HogwartsExpressSVG";
+import HogwartsExpressSVG, { Steam } from './HogwartsExpressSVG';
 import StationCard from "./StationCard";
 import "./train.css";
 
@@ -29,7 +29,7 @@ export default function HogwartsJourney({ darkMode = true }) {
 
   // state
   const [scrollPct, setScrollPct] = useState(0); // % scroll process
-  const [activeIndex, setActiveIndex] = useState(0); // curr station index
+  const [activeIndex,setActiveIndex] = useState(0); // curr station index
   const [rolling, setRolling] = useState(false); // is train moving
   const [facingRight, setFacingRight] = useState(true); // direction of train
   const [cardVisible, setCardVisible] = useState(true); // fade animation for card

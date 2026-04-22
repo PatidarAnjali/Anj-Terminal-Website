@@ -1,4 +1,3 @@
-
 // station card 
 
 export default function StationCard({ item, visible, darkMode }) {
@@ -43,24 +42,42 @@ export default function StationCard({ item, visible, darkMode }) {
         {item.station}
       </p>
 
-      <p style={{ color: darkMode ? "rgba(255,255,255,0.58)" : "rgba(0,0,0,0.6)", fontSize: "1rem", lineHeight: 1.72, margin: 0, fontFamily: "inherit" }}>
-        {item.description}
-      </p>
+      {/* Description bullets */}
+      {Array.isArray(item.description) ? (
+        <ul style={{ color: darkMode ? "rgba(255,255,255,0.58)" : "rgba(0,0,0,0.6)", fontSize: "1rem", lineHeight: 1.72, margin: 0, paddingLeft: "1.4em", fontFamily: "inherit", listStyleType: "disc" }}>
+          {item.description.map((point, i) => (
+            <li key={i} style={{ marginBottom: "4px", paddingLeft: "0.2em" }}>{point}</li>
+          ))}
+        </ul>
+      ) : (
+        <ul style={{ color: darkMode ? "rgba(255,255,255,0.58)" : "rgba(0,0,0,0.6)", fontSize: "1rem", lineHeight: 1.72, margin: 0, paddingLeft: "1.4em", fontFamily: "inherit", listStyleType: "disc" }}>
+          <li style={{ paddingLeft: "0.2em" }}>{item.description}</li>
+        </ul>
+      )}
 
+      {/* Link */}
       {item.link && (
-        <a
-          href={item.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ display: "inline-block", marginTop: "14px", color: accent, fontSize: "0.82rem", fontFamily: "inherit" }}
-        >
-          {item.linkLabel || "View"}
-        </a>
+        <div style={{ paddingLeft: "1.6em", marginTop: "10px" }}>
+          <a
+            href={item.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "4px",
+              color: accent,
+              fontSize: "0.85rem",
+              fontFamily: "inherit",
+              textDecoration: "underline",
+              textUnderlineOffset: "3px",
+              opacity: 0.9,
+            }}
+          >
+            {item.linkLabel || "View"} ↗
+          </a>
+        </div>
       )}
     </div>
   );
 }
-
-
-
-

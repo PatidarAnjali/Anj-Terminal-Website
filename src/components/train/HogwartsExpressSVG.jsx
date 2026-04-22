@@ -38,7 +38,7 @@ function Wheel({ cx, cy, r, spokes = 8, period = "0.42s", delay = "0s" }) {
 }
 
 // steam
-function Steam({ active }) {
+export function Steam({ active }) {
 
     // each puff has diff size, delay, adn horizontal offset
     const puffs = [
@@ -62,7 +62,7 @@ function Steam({ active }) {
                 <div key={i} style={{
                     position: "absolute",
                     left: `${36 + p.dx}px`, bottom: 0,
-                    width:`${p.size}px`, height: `${p.size}px`,
+                    width: `${p.size}px`, height: `${p.size}px`,
                     borderRadius: "50%",
                     background: "rgba(230,230,230,0.3)",
                     filter: "blur(8px)",

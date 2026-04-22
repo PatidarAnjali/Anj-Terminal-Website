@@ -26,54 +26,78 @@ export const journeyItems = [
     label: "Jan '23 - Aug '23",
     station: "Software Engineering & SEO Co-op", // role
     org: "DigiPix Inc.",
-    description:
-      "First industry co-op; built SEO tooling and engineering features in a fast-paced startup environment.",
-    link: null,
+    description: [
+      "First industry co-op I did in highschool at an established digital agency",
+      "Improved website performance and search rankings",
+      "Analyzed data to fix SEO and performance issues",
+    ],
+    link: "https://www.linkedin.com/feed/update/urn:li:ugcPost:7077007488620924929/",
+    linkLabel: "View on LinkedIn",
   },
   {
     year: "Oct '24",
     label: "Oct '24 - May '25",
     station: "Associate Developer",
     org: "Google Developer Groups (GDG)",
-    description:
-      "Led technical direction for the GDG campus chapter, organising developer events and driving community growth.",
+    description: [
+      "Led the biggest AI hackathon at UofT (GenAI Genesis)",
+      "Helped build and maintain web tools",
+      "Fixed technical issues during events",
+      "Supported workshops and developer sessions",
+      ],
     link: null,
+    linkLabel: null
   },
   {
-    year: "Oct '25",
-    label: "Oct '25 - Present",
-    station: "Technology Director",
+    year: "Oct '24",
+    label: "Oct '24 - May '25",
+    station: "Technology Developer",
     org: "Computer Science Enrichment Club",
-    description:
-      "will add soon",
+    description: [
+      "Built and maintained websites and internal tools using JavaScript",
+      "Added technical features to support club events",
+      "Worked with team members to turn ideas into web solutions",
+    ],
     link: null,
+    linkLabel: null
   },
   {
     year: "Oct '24",
     label: "Oct '24 - May '25",
     station: "Web Developer",
     org: "UofT Scarborough - Lovejoy Lab",
-    description:
-      "Built out the department website for the Biological & Physical Sciences Lovejoy Lab research group.",
+    description: [
+      "Built out the department website for the Biological & Physical Sciences Lovejoy Lab research group"
+    ],
     link: null,
+    linkLabel: null
   },
   {
     year: "Oct '25",
     label: "Oct '25 - Present",
     station: "VP of Marketing",
     org: "Computer Science Enrichment Club",
-    description:
-      "will come soon",
+    description: [
+      "Helped plan and promote club events",
+      "Improved outreach using analytics and digital content",
+      "Worked with the executive team on club initiatives",
+    ],
     link: null,
+    linkLabel: null
   },
   {
     year: "Jan '26",
     label: "Jan '26 - Present",
     station: "CSCA48 Teaching Assistant", // role
     org: "UofT Scarborough",
-    description:
-      "Supporting the next generation of programmers, helping students find their footing in intro CS courses.",
-    link: null, // ADD soon
+    description: [
+      "Explained CS concepts (ADTs, data structures, object oriented programming, complexity, recursion)",
+      "Helped students debug code during office hours and led tutorials",
+      "Marked coursework for correctness and quality",
+      "Answered questions and supported student learning"
+    ],
+    link: null,
+    linkLabel: null
   },
 ];
 
