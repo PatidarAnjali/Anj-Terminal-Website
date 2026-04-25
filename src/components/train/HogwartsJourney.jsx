@@ -138,6 +138,7 @@ export default function HogwartsJourney({ darkMode = true }) {
           <div style={{ width: `${totalWidth}px`, height: "1px" }} />
         </div>
 
+
         {/* visual canvas */}
         <div style={{
           position: "absolute", top: 10, left: 0,
@@ -253,7 +254,7 @@ export default function HogwartsJourney({ darkMode = true }) {
             }}
           >
             <Steam active={rolling} />
-            <HogwartsExpressSVG />
+            <HogwartsExpressSVG facingRight={facingRight} />
           </div>
 
           {/* edge fades */}
