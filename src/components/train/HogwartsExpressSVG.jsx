@@ -52,7 +52,7 @@ export function Steam({ active }) {
     return (
         <div style={{
             position: "absolute",
-            right: "26px",
+            left: "83.67%",
             top: "-100px",
             width: "80px",
             height: "100px",
@@ -176,19 +176,11 @@ export default function HogwartsExpressSVG( {facingRight = true} ) {
             <circle cx="485" cy="53" r="4" fill="#444" />
             <circle cx="485" cy="53" r="2" fill="#666" />
 
-
-            {/* name plate */}
-            <rect x="465" y="37" width="38" height="14" rx="3" fill="#c0392b" />
-            <rect x="466" y="38" width="36" height="12" rx="2.5" fill="#a93226" />
-            <text x="484" y="42.5" textAnchor="middle" fontSize="3.8" fill="#f6c90e" fontWeight="bold" fontFamily="Georgia, serif" letterSpacing="0.3">HOGWARTS</text>
-            <text x="484" y="47.5" textAnchor="middle" fontSize="3.8" fill="#f6c90e" fontWeight="bold" fontFamily="Georgia, serif" letterSpacing="0.3">EXPRESS</text>
-
-
             {/* chimney */}
-            <rect x="464" y="10" width="16" height="28" rx="2" fill="#1a1a1a" />
-            <rect x="459" y="7" width="26" height="8" rx="3" fill="#2a2a2a" />
-            <rect x="461" y="5" width="22" height="5" rx="2" fill="#b8860b" />
-            <rect x="458" y="10" width="28" height="3" rx="1" fill="#8B6914" />
+            <rect x="477" y="3.67" width="16" height="28" rx="5" fill="#1a1a1a" />
+            <rect x="472" y="7" width="26" height="8" rx="3" fill="#2a2a2a" />
+            <rect x="474" y="-1" width="22" height="5" rx="2" fill="#b8860b" />
+            <rect x="471" y="3.67" width="28" height="3" rx="1" fill="#8B6914" />
 
 
             {/* front buffer */}
