@@ -1,12 +1,18 @@
 /* Hogwarts train animations */
 
 @keyframes wheelSpin {
-  to { transform: rotate(360deg); }
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
 }
 
 @keyframes steamPuff {
   0% { transform: translateY(0) scale(0.5); opacity: 0.75; }
-  100% { transform: translateY(-90px) scale(2.6); opacity: 0;    }
+  100% { transform: translateY(-90px) scale(2.6); opacity: 0; }
+}
+
+@keyframes pistonRod {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 /* wheel group: paused by default, runs when train is rolling */

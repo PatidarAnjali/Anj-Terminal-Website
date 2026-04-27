@@ -254,7 +254,7 @@ export default function HogwartsJourney({ darkMode = true }) {
             }}
           >
             <Steam active={rolling} />
-            <HogwartsExpressSVG facingRight={facingRight} />
+            <HogwartsExpressSVG facingRight={facingRight} active={rolling} />
           </div>
 
           {/* edge fades */}

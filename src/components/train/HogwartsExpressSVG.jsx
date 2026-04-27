@@ -1,5 +1,7 @@
 // wheel, Steam, and HogwartsExpressSVG; purely visual, no state
 
+import { useState, useRef, useEffect } from "react";
+
 // draws a wheel w/ spokes and applies rotation animation via css
 function Wheel({ cx, cy, r, spokes = 8, period = "0.42s", delay = "0s" }) {
 
@@ -76,8 +78,82 @@ export function Steam({ active }) {
     );
 }
 
+function PistonRods({ active }) {
+
+    const [angle, setAngle] = useState(0);
+    const rafRef = useRef(null);
+    const lastRef = useRef(null);
+
+    useEffect(() => {
+        const step = (ts) => {
+
+            if (active) {
+                if (lastRef.current !== null) {
+                    const dt = ts - lastRef.current;
+                    // 2000ms per rotation = slow, steady chugga pace
+                    setAngle(a => (a + (dt / 567) * 360) % 360);
+                }
+                lastRef.current = ts;
+            } else {
+                lastRef.current = null;
+            }
+
+            rafRef.current = requestAnimationFrame(step);
+        };
+
+        rafRef.current = requestAnimationFrame(step);
+        return () => cancelAnimationFrame(rafRef.current);
+    }, [active]);
+
+    const cy = 97;
+    const r = 14; // crank throw radius
+
+    const rad = (angle * Math.PI) / 180;
+
+    // one pin orbits wheel 1 (cx=376), drives the whole rod
+    const pinX = 376 + r * Math.sin(rad);
+    const pinY = cy - r * Math.cos(rad);
+
+    // rod is fixed length, anchored at pin, extends to wheel 2
+    const rodLen = 56; // fixed, = distance between wheel centers (432-376)
+
+    return (
+        <g>
+            {/* side rod; fixed length, translates with crank pin */}
+            <rect
+                x={pinX}
+                y={pinY - 2.5}
+                width={rodLen}
+                height="5"
+                rx="2.5"
+                fill="#c0392b"
+            />
+            <rect
+                x={pinX}
+                y={pinY}
+                width={rodLen}
+                height="2"
+                rx="1"
+                fill="#a93226"
+                opacity="0.6"
+            />
+
+            {/* crank pin on wheel 1 */}
+            <circle
+                cx={pinX} cy={pinY} r="4"
+                fill="#c0392b" stroke="#f6c90e" strokeWidth="0.8"
+            />
+            {/* crank pin on wheel 2 - same phase, offset by rod length */}
+            <circle
+                cx={pinX + rodLen} cy={pinY} r="4"
+                fill="#c0392b" stroke="#f6c90e" strokeWidth="0.8"
+            />
+        </g>
+    );
+}
+
 // train SVG
-export default function HogwartsExpressSVG( ) {
+export default function HogwartsExpressSVG( {facingRight = true, active = false } ) {
     return (
         <svg
             viewBox="0 0 520 120"
@@ -202,26 +278,25 @@ export default function HogwartsExpressSVG( ) {
             <Wheel cx={310} cy={97} r={14} spokes={6} period="0.45s" delay="0.05s" />
 
 
-            {/* connecting rod */}
-            <rect x="354" y="90" width="100" height="5" rx="2.5" fill="#c0392b" />
-            <rect x="354" y="94" width="100" height="2" rx="1" fill="#a93226" opacity="0.6" />
-            <rect x="406" y="88" width="50" height="4" rx="2" fill="#8B0000" opacity="0.7" />
+            {/* piston connecting rods: driven by crank kinematics */}
+            <PistonRods active={active} />
 
 
             {/* shadow */}
             <ellipse cx="260" cy="112" rx="240" ry="5" fill="black" opacity="0.18" />
 
 
-            {/* nameplate as image */}
-            <image
-                href="public/hogwartsexpresslogo.png"
-                x="465"
-                y="28"
-                width="40"
-                height="18"
-                style={{ filter: "brightness(1.5) contrast(1.3)" }}
-            />
-
+            {/* name plate - counter-flip when train faces left */}
+            <g transform={!facingRight ? `scale(-1,1) translate(-971,0)` : ""}>
+                <image
+                    href="public/hogwartsexpresslogo.png"
+                    x="465"
+                    y="28"
+                    width="40"
+                    height="18"
+                    style={{ filter: "brightness(1.4)" }}
+                />
+            </g>
         </svg>
     );
 }
