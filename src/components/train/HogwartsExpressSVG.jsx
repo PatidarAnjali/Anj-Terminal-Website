@@ -77,7 +77,7 @@ export function Steam({ active }) {
 }
 
 // train SVG
-export default function HogwartsExpressSVG( {facingRight = true} ) {
+export default function HogwartsExpressSVG( ) {
     return (
         <svg
             viewBox="0 0 520 120"
@@ -212,13 +212,16 @@ export default function HogwartsExpressSVG( {facingRight = true} ) {
             <ellipse cx="260" cy="112" rx="240" ry="5" fill="black" opacity="0.18" />
 
 
-            {/* name plate - counter-flip when train faces left */}
-            <g transform={!facingRight ? `scale(-1,1) translate(-968,0)` : ""}>
-                <rect x="465" y="37" width="38" height="14" rx="3" fill="#c0392b" />
-                <rect x="466" y="38" width="36" height="12" rx="2.5" fill="#a93226" />
-                <text x="484" y="42.5" textAnchor="middle" fontSize="3.8" fill="#f6c90e" fontWeight="bold" fontFamily="Georgia, serif" letterSpacing="0.3">HOGWARTS</text>
-                <text x="484" y="47.5" textAnchor="middle" fontSize="3.8" fill="#f6c90e" fontWeight="bold" fontFamily="Georgia, serif" letterSpacing="0.3">EXPRESS</text>
-            </g>
+            {/* nameplate as image */}
+            <image
+                href="public/hogwartsexpresslogo.png"
+                x="465"
+                y="28"
+                width="40"
+                height="18"
+                style={{ filter: "brightness(1.5) contrast(1.3)" }}
+            />
+
         </svg>
     );
 }
