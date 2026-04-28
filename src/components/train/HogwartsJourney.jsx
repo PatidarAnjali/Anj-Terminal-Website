@@ -26,6 +26,7 @@ export default function HogwartsJourney({ darkMode = true }) {
   const scrollSentinelRef = useRef(null);
   const stopTimerRef = useRef(null);
   const lastScrollX = useRef(0);
+  const activeIndexRef = useRef(0);
 
   // state
   const [scrollPct, setScrollPct] = useState(0); // % scroll process
@@ -34,6 +35,7 @@ export default function HogwartsJourney({ darkMode = true }) {
   const [facingRight, setFacingRight] = useState(true); // direction of train
   const [cardVisible, setCardVisible] = useState(true); // fade animation for card
 
+  activeIndexRef.current = activeIndex;
 
   // totla width of scrollable track
 
@@ -100,18 +102,22 @@ export default function HogwartsJourney({ darkMode = true }) {
   useEffect(() => {
     const dist = Math.abs(stopPositions[nearestIndex] - trainCenter);
 
-    if (dist >= ACTIVE_HALF) return; // only switch if train is close enough
-    if (nearestIndex === activeIndex) return; // avoid unnecessary updates
+    if (dist >= ACTIVE_HALF) return;
+    if (nearestIndex === activeIndexRef.current) return;
 
-    setCardVisible(false); // fade out -> swap -> fade in
+    setCardVisible(false);
 
     const t = setTimeout(() => {
       setActiveIndex(nearestIndex);
+      activeIndexRef.current = nearestIndex;
       setCardVisible(true);
     }, 150);
 
     return () => clearTimeout(t);
 
+    // nearestIndex/stopPositions/trainCenter are derived from scrollPct in the same
+    // render, so they're always in sync with it; adding them would cause extra runs
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scrollPct]);
 
   const item = journeyItems[activeIndex];

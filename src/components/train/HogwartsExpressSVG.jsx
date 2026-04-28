@@ -289,7 +289,7 @@ export default function HogwartsExpressSVG( {facingRight = true, active = false 
             {/* name plate - counter-flip when train faces left */}
             <g transform={!facingRight ? `scale(-1,1) translate(-971,0)` : ""}>
                 <image
-                    href="public/hogwartsexpresslogo.png"
+                    href="/hogwartsexpresslogo.png"
                     x="465"
                     y="28"
                     width="40"
