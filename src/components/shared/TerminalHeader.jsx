@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import { Sun, Moon } from "lucide-react";
 
 export default function TerminalHeader({ darkMode, setDarkMode, colors, currentPage, navigateTo }) {

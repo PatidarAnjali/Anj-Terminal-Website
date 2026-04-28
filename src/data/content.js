@@ -51,19 +51,6 @@ export const journeyItems = [
   {
     year: "Oct '24",
     label: "Oct '24 - May '25",
-    station: "Technology Developer",
-    org: "Computer Science Enrichment Club",
-    description: [
-      "Built and maintained websites and internal tools using JavaScript",
-      "Added technical features to support club events",
-      "Worked with team members to turn ideas into web solutions",
-    ],
-    link: null,
-    linkLabel: null
-  },
-  {
-    year: "Oct '24",
-    label: "Oct '24 - May '25",
     station: "Web Developer",
     org: "UofT Scarborough - Lovejoy Lab",
     description: [
@@ -73,31 +60,60 @@ export const journeyItems = [
     linkLabel: null
   },
   {
-    year: "Oct '25",
-    label: "Oct '25 - Present",
-    station: "VP of Marketing",
-    org: "Computer Science Enrichment Club",
-    description: [
-      "Helped plan and promote club events",
-      "Improved outreach using analytics and digital content",
-      "Worked with the executive team on club initiatives",
-    ],
-    link: null,
-    linkLabel: null
-  },
-  {
     year: "Jan '26",
-    label: "Jan '26 - Present",
-    station: "CSCA48 Teaching Assistant", // role
-    org: "UofT Scarborough",
+    label: "Jan '26 - April '26",
+    station: "UofT Scarborough",
+    org: "Teaching Assistant",
     description: [
-      "Explained CS concepts (ADTs, data structures, object oriented programming, complexity, recursion)",
+      "Explained CS concepts for CSCA48 (ADTs, data structures, object oriented programming, complexity, recursion)",
       "Helped students debug code during office hours and led tutorials",
       "Marked coursework for correctness and quality",
       "Answered questions and supported student learning"
     ],
     link: null,
     linkLabel: null
+  },
+  {
+    year: "May '26",
+    label: "Oct '24 - Present",
+    station: "UofT Scarborough",
+    org: "Computer Science Enrichment Club",
+    description: [
+      "Led planning and execution of technical and community events",
+      "Drove outreach using analytics and digital content to increase engagement",
+      "Coordinated with the executive team to define and deliver on club initiatives",
+    ],
+    roles: [
+      {
+        title: "President",
+        period: "May '26 - Present",
+        description: [
+          "Led planning and execution of technical and community events",
+          "Coordinated with exec team to define and deliver on club initiatives",
+          "Drove outreach initiatives to increase engagement",
+        ]
+      },
+      {
+        title: "VP of Marketing",
+        period: "Oct '25 - May '26",
+        description: [
+          "Improved outreach using analytics and digital content",
+          "Worked with the executive team on club initiatives",
+          "Helped plan and promote club events",
+        ]
+      },
+      {
+        title: "Tech Developer",
+        period: "Oct '24 - Oct '25",
+        description: [
+          "Built and maintained websites and internal tools using JavaScript",
+          "Added technical features to support club events",
+          "Worked with team members to turn ideas into web solutions",
+        ]
+      },
+    ],
+    link: null,
+    linkLabel: null,
   },
 ];
 

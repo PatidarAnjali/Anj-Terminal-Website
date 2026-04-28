@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import { useInView } from "../../utils/hooks";
 
 export default function PageHeader({ title, darkMode, textColor }) {
