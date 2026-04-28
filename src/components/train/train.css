@@ -1,8 +1,8 @@
 /* Hogwarts train animations */
 
 @keyframes wheelSpin {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 @keyframes steamPuff {
@@ -40,3 +40,18 @@
 
 .hj-sentinel::-webkit-scrollbar { display: none; }
 .hj-sentinel { -ms-overflow-style: none; scrollbar-width: none; }
+
+.station-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  transition: gap 0.2s ease, opacity 0.2s ease;
+}
+
+.station-link:hover {
+  gap: 10px;
+  opacity: 1;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

@@ -103,9 +103,25 @@ export const journeyItems = [
 
 export const projects = [
   {
+    title: 'Marketplace Platform',
+    tech: 'MongoDB • ExpressJS • GraphQL • Angular • NodeJS',
+    desc: 'Full MEAN stack e-commerce web app that supports the full commerce lifecycle',
+    year: '2026',
+    link: 'https://github.com/PatidarAnjali/Marketplace-Platform',
+    filter: 'Web App'
+  },
+  {
+    title: 'Systems Programming Projects',
+    tech: 'C • Linux • /proc • System Calls • IPC (fork, pipe) • Signals',
+    desc: 'Three C systems projects progressing from terminal monitoring to concurrent multi-process architectures',    
+    year: '2026',
+    link: 'https://github.com/PatidarAnjali/Systems-Programming-Projects',
+    filter: 'Other'
+  },
+  {
     title: 'Smart-Air',
     tech: 'Android • Java • Firebase',
-    desc: 'Role-based Android app for asthma management using Firebase Auth and Firestore, with real-time logging, alerts, and PDF/CSV reports.',
+    desc: 'Role-based Android app for asthma management using Firebase Auth and Firestore, with real-time logging, alerts, and PDF/CSV reports',
     year: '2025',
     link: 'https://github.com/kr1shap/smart-air',
     filter: 'Mobile App'
@@ -113,7 +129,7 @@ export const projects = [
   {
     title: 'EventFlow API',
     tech: 'Node.js • Express • PostgreSQL • Docker • Redis',
-    desc: 'Event aggregation platform with automated web scraping using Puppeteer and Cheerio. Features REST API with caching, rate limiting, and scheduled scraping jobs via Bull queues.',
+    desc: 'Event aggregation platform with automated web scraping using Puppeteer and Cheerio. Features REST API with caching, rate limiting, and scheduled scraping jobs via Bull queues',
     year: '2025',
     link: 'https://github.com/PatidarAnjali/Eventflow-API',
     filter: 'API'
@@ -121,7 +137,7 @@ export const projects = [
     {
     title: 'Movie Recommendation Model',
     tech: 'Python • FastAPI • scikit-learn • Pandas • NumPy',
-    desc: 'AI-powered recommendation engine implementing collaborative filtering, matrix factorization (SVD), and content-based filtering. Feat.: RESTful API with multiple ML algorithms and real-time predictions.',
+    desc: 'AI-powered recommendation engine implementing collaborative filtering, matrix factorization (SVD), and content-based filtering. Feat.: RESTful API with multiple ML algorithms and real-time predictions',
     year: '2025',
     link: 'https://github.com/PatidarAnjali/Movie-Rec-System',
     filter: 'ML/AI'
@@ -129,7 +145,7 @@ export const projects = [
   {
     title: 'Job Application CRM',
     tech: 'React • Vite • Tailwind CSS • dnd-kit • Recharts',
-    desc: 'React-based job application tracker with a drag-and-drop workflow & analytics dashboard to visualize application progress.',
+    desc: 'React-based job application tracker with a drag-and-drop workflow & analytics dashboard to visualize application progress',
     year: '2025',
     link: 'https://github.com/PatidarAnjali/Job-App-CRM',
     filter: 'Web App'
@@ -137,7 +153,7 @@ export const projects = [
   {
     title: 'Nuvou',
     tech: 'MongoDB • ExpressJS • Angular • NodeJS',
-    desc: 'Full-stack journaling app for artists. Features authentication, CRUD operations, and portfolio sharing.',
+    desc: 'Full-stack journaling app for artists. Features authentication, CRUD operations, and portfolio sharing',
     year: '2024',
     link: 'https://github.com/PatidarAnjali/nuvou-newapp-frontend',
     filter: 'Web App'
@@ -145,7 +161,7 @@ export const projects = [
   {
     title: 'Animal Paintings Gallery',
     tech: 'Angular • TypeScript',
-    desc: 'Interactive art gallery with dynamic rendering and smooth transitions.',
+    desc: 'Interactive art gallery with dynamic rendering and smooth transitions',
     year: '2023',
     link: 'https://github.com/PatidarAnjali/animal-paintings',
     filter: 'Web App'
@@ -153,7 +169,7 @@ export const projects = [
   {
     title: 'The Dino Game',
     tech: 'Java • Swing • AWT',
-    desc: 'A 2D game with collision detection and smooth animations. My first real project that sparked my passion for coding.',
+    desc: 'A 2D game with collision detection and smooth animations. My first real project that sparked my passion for coding',
     year: '2022',
     link: 'https://github.com/PatidarAnjali/Dino-Game',
     filter: 'Games'

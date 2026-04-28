@@ -39,7 +39,7 @@ export default function ProjectsPage({ darkMode, navigateTo, colors }) {
 
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  const categories = ["All", "Mobile App", "Web App", "ML/AI", "API", "Games"];
+  const categories = ["All", "Mobile App", "Web App", "ML/AI", "API", "Games", "Other"];
 
   // categorize projects
   const getProjectCategory = (project) => {
@@ -49,7 +49,8 @@ export default function ProjectsPage({ darkMode, navigateTo, colors }) {
     if (filter.includes('API')) return 'API';
     if (filter.includes('ML/AI')) return 'ML/AI';
     if (filter.includes('Games')) return 'Games';
-    return 'Web App';
+    if (filter.includes('Web App')) return 'Web App';
+    return 'Other';
   }
 
   // filter projects

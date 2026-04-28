@@ -1,4 +1,5 @@
 // station card 
+import { ExternalLink } from "lucide-react";
 
 export default function StationCard({ item, visible, darkMode }) {
 
@@ -62,19 +63,15 @@ export default function StationCard({ item, visible, darkMode }) {
             href={item.link}
             target="_blank"
             rel="noopener noreferrer"
+            className="station-link"
             style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "4px",
               color: accent,
               fontSize: "0.85rem",
               fontFamily: "inherit",
-              textDecoration: "underline",
-              textUnderlineOffset: "3px",
               opacity: 0.9,
             }}
           >
-            {item.linkLabel || "View"} ↗
+            {item.linkLabel || "View"} <ExternalLink size={16} />          
           </a>
         </div>
       )}
