@@ -56,7 +56,7 @@ const navigateTo = (page) => {
       </div>
 
       <footer className={`py-8 text-center ${colors.secondaryText} text-sm`}>
-        © 2025 Anjali Patidar
+        © 2026 Anjali Patidar
       </footer>
     </div>
   );
