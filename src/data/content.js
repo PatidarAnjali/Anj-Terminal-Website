@@ -112,8 +112,8 @@ export const journeyItems = [
         ]
       },
     ],
-    link: null,
-    linkLabel: null,
+    link: "https://csecuoft.ca/",
+    linkLabel: "Checkout our website :)",
   },
 ];
 
