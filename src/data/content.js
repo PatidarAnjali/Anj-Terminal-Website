@@ -62,9 +62,9 @@ export const journeyItems = [
   },
   {
     year: "Jan '26",
-    label: "Jan '26 - April '26",
+    label: "Jan '26 - Present",
     station: "UofT Scarborough",
-    org: "Teaching Assistant",
+    org: "Teaching Assistant x2",
     description: [
       "Explained CS concepts for CSCA48 (ADTs, data structures, object oriented programming, complexity, recursion)",
       "Helped students debug code during office hours and led tutorials",
