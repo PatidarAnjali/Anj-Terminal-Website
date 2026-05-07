@@ -6,7 +6,7 @@ export default function StationCard({ item, visible, darkMode }) {
 
   const accent = darkMode ? "rgba(52,211,153,0.75)" : "rgba(5,150,105,0.85)";
   const accentLine = darkMode ? "rgba(52,211,153,0.35)" : "rgba(0,0,0,0.3)";
-  const [hoveredRole, setHoveredRole] = useState(0);
+  const [hoveredRole, setHoveredRole] = useState(null);
 
   return (
     <div style={{
@@ -50,12 +50,14 @@ export default function StationCard({ item, visible, darkMode }) {
         <div style={{ marginBottom: "12px", paddingLeft: "0.2em" }}>
           {item.roles.map((r, i) => (
 
-            <div key={i} style={{ marginBottom: i < item.roles.length - 1 ? "8px" : 0 }}>
-            
+            <div
+              key={i}
+              style={{ marginBottom: i < item.roles.length - 1 ? "8px" : 0 }}
+              onMouseEnter={() => setHoveredRole(i)}
+              onMouseLeave={() => setHoveredRole(null)}
+            >
               <div
                 style={{ display: "flex", alignItems: "flex-start", gap: "10px", cursor: "pointer" }}
-                onMouseEnter={() => setHoveredRole(i)}
-                onMouseLeave={() => setHoveredRole(null)}
               >
 
                 {/* dot + line */}
