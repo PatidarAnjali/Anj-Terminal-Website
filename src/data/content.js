@@ -1,26 +1,23 @@
 export const randomImages = [
-  { src: "/Genai.png", caption: "Part of the team that ran this massive AI Hackathon - unforgettable experience!" },
-  { src: "/Calculus.png", caption: "The time when Calculus II humbled me" },
-  { src: "/Ada.png", caption: "Did you know? Ada Lovelace wrote the first algorithm" },
-  { src: "/Grace.png", caption: "Grace Hopper popularized the term 'debugging'" },
-  { src: "/Hedy.png", caption: "Hedy Lamarr co-invented frequency hopping for secure commss" },
-  { src: "/Annie.png", caption: "Annie Easley: Rocket scientist & coding pioneer" },
-  { src: "/Hackathon.png", caption: "My first ever hackathon was HTV 9" },
+  { src: "/Genai.png", caption: "Helped organize one of Toronto's largest AI hackathons!" },
+  { src: "/Calculus.png", caption: "Calculus II introduced me to series, integrals, and suffering" },
+  { src: "/Ada.png", caption: "Ada Lovelace is considered the world's first computer programmer" },
+  { src: "/Grace.png", caption: "Grace Hopper popularized the term 'debugging' in computing" },
+  { src: "/Hedy.png", caption: "Hedy Lamarr co-invented frequency-hopping technology" },
+  { src: "/Annie.png", caption: "Annie Easley worked on rocket systems and energy technologies at NASA" },
+  { src: "/Hackathon.png", caption: "My first hackathon was Hack the Valley 9" },
   {
     src: "/CMStrivia.png",
-    caption: "Winning the CMS-Faculty Student Trivia at UTSC",
+    caption: "Won the CMS Faculty-Student Trivia competition at UTSC",
     link: "https://www.instagram.com/p/DImAht5xzjO/?hl=en&img_index=10"
   },
-  { src: "/Painting.png", caption: "I love painting to de-stress" },
+  { src: "/Painting.png", caption: "Painting is one of my favorite ways to de-stress" },
   {
     src: "/SummerSchool.png",
-    caption: "Volunteering for the Computer Science summer school at UTSC",
+    caption: "Volunteered with UTSC's Computer Science summer program",
     link: "https://www.instagram.com/reel/DN35y5sCeyv/?hl=en"
   },
-    {
-    src: "/A48-W26-Team.png",
-    caption: "Back when I TA'ed Comp Sci II for 'chW26 (mostly for the t-shirt)",
-  },
+  { src: "/A48-W26-Team.png", caption: "TA'd Comp Sci II during Winter 2026 (for the t-shirt)" },
 ];
 
 
