@@ -17,6 +17,10 @@ export const randomImages = [
     caption: "Volunteering for the Computer Science summer school at UTSC",
     link: "https://www.instagram.com/reel/DN35y5sCeyv/?hl=en"
   },
+    {
+    src: "/A48-W26-Team.png",
+    caption: "Back when I TA'ed Comp Sci II for 'chW26 (mostly for the t-shirt)",
+  },
 ];
 
 
