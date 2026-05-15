@@ -21,7 +21,7 @@ export default function AboutPage({ darkMode, navigateTo, colors }) {
             style={{ transitionDelay: "0.1s" }}
           >
             Hi! I'm Anjali, a second-year Software Engineering student at UofT.
-            I love building things, solving problems through code, and making amazing, really funny jokes.
+            I love building things, solving problems through code, blogging and making amazing, really funny jokes.
           </p>
 
           <p
@@ -41,8 +41,26 @@ export default function AboutPage({ darkMode, navigateTo, colors }) {
             style={{ transitionDelay: "0.3s" }}
           >
             When I'm not coding, you'll find me reading, playing guitar, baking, scrolling pinterest,
-            or checking out one of the 6-7 new food spots I've been wanting to try.
-          </p>
+            or checking out one of the 6-7 new food spots I've been wanting to try. I also like to blog 
+            (since I don't have time to finish my novel from grade 10):{" "}
+              <a 
+                href="https://medium.com/@anjali.ckpatidar"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "4px",
+                  color: colors.accentColor,
+                  fontSize: "inherit",
+                  textDecoration: "underline",
+                  textUnderlineOffset: "3px",
+                  opacity: 0.9,
+                }}
+              >
+                my Medium page ↗
+              </a>
+            </p>
 
           {/* journey section */}
           <div
