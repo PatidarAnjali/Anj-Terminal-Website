@@ -116,6 +116,20 @@ export const journeyItems = [
     link: "https://csecuoft.ca/",
     linkLabel: "Checkout our website :)",
   },
+    {
+    year: "Jan '26",
+    label: "Jan '26 - Present",
+    station: "Department of CS & Math",
+    org: "Summer program assistant",
+    description: [
+      "Support professors in delivering an engaging summer program for high school students to computer science concepts through workshops",
+      "Assist with sessions covering problem-solving, programming fundamentals, and debugging",
+      "Help facilitate projects, including robot programming, building a camera, and developing a simple neural network for object recognition",
+      "Explain complex topics in accessible, age-appropriate language",
+    ],
+    link: null,
+    linkLabel: null
+  },
 ];
 
 export const projects = [

@@ -20,7 +20,7 @@ export default function AboutPage({ darkMode, navigateTo, colors }) {
             }`}
             style={{ transitionDelay: "0.1s" }}
           >
-            Hi! I'm Anjali, a second-year Software Engineering student at UofT.
+            Hi! I'm Anjali, a third-year Software Engineering student at UofT.
             I love building things, solving problems through code, blogging and making amazing, really funny jokes.
           </p>
 
