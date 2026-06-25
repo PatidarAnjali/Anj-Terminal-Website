@@ -130,6 +130,17 @@ export const journeyItems = [
     link: null,
     linkLabel: null
   },
+  {
+    year: "Sept '26",
+    label: "Sept '26 - Dec '26",
+    station: "DevOps Developer", // role
+    org: "CGI",
+    description: [
+      "coming soon...",
+    ],
+    link: null,
+    linkLabel: null
+  },
 ];
 
 export const projects = [
