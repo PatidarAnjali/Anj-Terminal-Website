@@ -133,10 +133,10 @@ export const journeyItems = [
   {
     year: "Sept '26",
     label: "Sept '26 - Dec '26",
-    station: "DevOps Developer", // role
-    org: "CGI",
+    station: "Software Dev Engineering Intern", // role
+    org: "Amazon Robotics",
     description: [
-      "coming soon...",
+      "got lost in the rainforest",
     ],
     link: null,
     linkLabel: null
