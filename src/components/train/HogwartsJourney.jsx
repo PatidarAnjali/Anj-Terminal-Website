@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { journeyItems } from "../../data/content";
+import { ChevronLeft, ChevronRight } from "lucide-react"; // for arrows
 import HogwartsExpressSVG, { Steam } from './HogwartsExpressSVG';
 import StationCard from "./StationCard";
 import "./train.css";
@@ -34,6 +35,7 @@ export default function HogwartsJourney({ darkMode = true }) {
   const [rolling, setRolling] = useState(false); // is train moving
   const [facingRight, setFacingRight] = useState(true); // direction of train
   const [cardVisible, setCardVisible] = useState(true); // fade animation for card
+  const [isHovered, setIsHovered] = useState(false); // is user hovering over train or card
 
   activeIndexRef.current = activeIndex;
 
@@ -66,6 +68,25 @@ export default function HogwartsJourney({ darkMode = true }) {
     0
   );
 
+  // scroll to a specific station index
+  const scrollToIndex = useCallback((idx) => {
+    const el = scrollSentinelRef.current;
+    if (!el) return;
+
+    const clamped = Math.max(0, Math.min(journeyItems.length - 1, idx));
+    const goingRight = clamped >= activeIndexRef.current;
+
+    // mirrors the trainLeft offset math above, just solved in reverse
+    const offset = goingRight ? TRAIN_W * 0.44 : TRAIN_W * 0.17;
+    const trainXTarget = stopPositions[clamped] + offset;
+
+    const max = el.scrollWidth - el.clientWidth;
+    const pct = (trainXTarget - firstStop) / (lastStop - firstStop);
+    const scrollLeftTarget = Math.max(0, Math.min(max, pct * max));
+
+    el.scrollTo({ left: scrollLeftTarget, behavior: "smooth" });
+  }, [stopPositions, firstStop, lastStop]);
+
   // handles horizontal scroll updates
   const handleScroll = useCallback(() => {
     const el = scrollSentinelRef.current;
@@ -85,6 +106,23 @@ export default function HogwartsJourney({ darkMode = true }) {
     if (stopTimerRef.current) clearTimeout(stopTimerRef.current);
     stopTimerRef.current = setTimeout(() => setRolling(false), 350);
   }, []);
+
+  useEffect(() => {
+    if (!isHovered) return;
+
+    function onKeyDown(e) {
+      if (e.key === "ArrowRight") {
+        e.preventDefault();
+        scrollToIndex(activeIndexRef.current + 1);
+      } else if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        scrollToIndex(activeIndexRef.current - 1);
+      }
+    }
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [isHovered, scrollToIndex]);
 
   // attach scroll event listener on mount
   useEffect(() => {
@@ -130,8 +168,11 @@ export default function HogwartsJourney({ darkMode = true }) {
     <div style={{ width: "100%", fontFamily: "inherit" }}>
 
       {/* outer frame */}
-      <div style={{
-        position: "relative", width: "100%", borderRadius: "18px",
+      <div
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        style={{
+          position: "relative", width: "100%", borderRadius: "18px",
         border: `1px solid ${darkMode ? "rgba(255,255,255,0.07)" : "rgba(0,0,0,0.07)"}`,
         background: darkMode
           ? "linear-gradient(155deg, #0d0d1a 0%, #140808 55%, #0d0d1a 100%)"
@@ -143,6 +184,46 @@ export default function HogwartsJourney({ darkMode = true }) {
         <div ref={scrollSentinelRef} className="hj-sentinel">
           <div style={{ width: `${totalWidth}px`, height: "1px" }} />
         </div>
+
+        <button
+        onClick={() => scrollToIndex(activeIndex - 1)}
+        disabled={activeIndex === 0}
+        aria-label="Previous station"
+        style={{
+          position: "absolute", left: "10px", top: "50%",
+          transform: "translateY(-50%)", zIndex: 20,
+          width: "34px", height: "34px", borderRadius: "50%",
+          border: `1px solid ${darkMode ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.15)"}`,
+          background: darkMode ? "rgba(0,0,0,0.4)" : "rgba(255,255,255,0.7)",
+          color: darkMode ? "#fff" : "#1a1a1a",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          cursor: activeIndex === 0 ? "not-allowed" : "pointer",
+          opacity: activeIndex === 0 ? 0.3 : 0.85,
+          transition: "opacity 0.2s ease",
+        }}
+      >
+        <ChevronLeft size={20} />
+      </button>
+
+      <button
+        onClick={() => scrollToIndex(activeIndex + 1)}
+        disabled={activeIndex === journeyItems.length - 1}
+        aria-label="Next station"
+        style={{
+          position: "absolute", right: "10px", top: "50%",
+          transform: "translateY(-50%)", zIndex: 20,
+          width: "34px", height: "34px", borderRadius: "50%",
+          border: `1px solid ${darkMode ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.15)"}`,
+          background: darkMode ? "rgba(0,0,0,0.4)" : "rgba(255,255,255,0.7)",
+          color: darkMode ? "#fff" : "#1a1a1a",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          cursor: activeIndex === journeyItems.length - 1 ? "not-allowed" : "pointer",
+          opacity: activeIndex === journeyItems.length - 1 ? 0.3 : 0.85,
+          transition: "opacity 0.2s ease",
+        }}
+      >
+        <ChevronRight size={20} />
+      </button>
 
 
         {/* visual canvas */}
