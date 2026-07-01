@@ -28,6 +28,7 @@ export default function HogwartsJourney({ darkMode = true }) {
   const stopTimerRef = useRef(null);
   const lastScrollX = useRef(0);
   const activeIndexRef = useRef(0);
+  const SCROLL_STEP = STOP_SPACING * 0.467; // step size for arrow key / button scrolling
 
   // state
   const [scrollPct, setScrollPct] = useState(0); // % scroll process
@@ -36,6 +37,8 @@ export default function HogwartsJourney({ darkMode = true }) {
   const [facingRight, setFacingRight] = useState(true); // direction of train
   const [cardVisible, setCardVisible] = useState(true); // fade animation for card
   const [isHovered, setIsHovered] = useState(false); // is user hovering over train or card
+  const [atStart, setAtStart] = useState(true); // is scroll at the very beginning
+  const [atEnd, setAtEnd] = useState(false); // is scroll at the very end
 
   activeIndexRef.current = activeIndex;
 
@@ -68,24 +71,13 @@ export default function HogwartsJourney({ darkMode = true }) {
     0
   );
 
-  // scroll to a specific station index
-  const scrollToIndex = useCallback((idx) => {
+  // scroll a small fixed distance in a direction (-1 = left/back, 1 = right/forward)
+  const scrollByStep = useCallback((direction) => {
     const el = scrollSentinelRef.current;
     if (!el) return;
 
-    const clamped = Math.max(0, Math.min(journeyItems.length - 1, idx));
-    const goingRight = clamped >= activeIndexRef.current;
-
-    // mirrors the trainLeft offset math above, just solved in reverse
-    const offset = goingRight ? TRAIN_W * 0.44 : TRAIN_W * 0.17;
-    const trainXTarget = stopPositions[clamped] + offset;
-
-    const max = el.scrollWidth - el.clientWidth;
-    const pct = (trainXTarget - firstStop) / (lastStop - firstStop);
-    const scrollLeftTarget = Math.max(0, Math.min(max, pct * max));
-
-    el.scrollTo({ left: scrollLeftTarget, behavior: "smooth" });
-  }, [stopPositions, firstStop, lastStop]);
+    el.scrollBy({ left: direction * SCROLL_STEP, behavior: "smooth" });
+  }, []);
 
   // handles horizontal scroll updates
   const handleScroll = useCallback(() => {
@@ -102,27 +94,32 @@ export default function HogwartsJourney({ darkMode = true }) {
     setScrollPct(pct);
     setRolling(true); // trigger rolling animation
 
+    // track edges so we can disable the arrow buttons
+    setAtStart(el.scrollLeft <= 0);
+    setAtEnd(el.scrollLeft >= max - 1);
+
     // stop rolling after user stops scrolling (debounce)
     if (stopTimerRef.current) clearTimeout(stopTimerRef.current);
     stopTimerRef.current = setTimeout(() => setRolling(false), 350);
   }, []);
 
+  // keyboard arrow nav, only active while hovering the train
   useEffect(() => {
     if (!isHovered) return;
 
     function onKeyDown(e) {
       if (e.key === "ArrowRight") {
         e.preventDefault();
-        scrollToIndex(activeIndexRef.current + 1);
+        scrollByStep(1);
       } else if (e.key === "ArrowLeft") {
         e.preventDefault();
-        scrollToIndex(activeIndexRef.current - 1);
+        scrollByStep(-1);
       }
     }
 
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [isHovered, scrollToIndex]);
+  }, [isHovered, scrollByStep]);
 
   // attach scroll event listener on mount
   useEffect(() => {
@@ -173,58 +170,59 @@ export default function HogwartsJourney({ darkMode = true }) {
         onMouseLeave={() => setIsHovered(false)}
         style={{
           position: "relative", width: "100%", borderRadius: "18px",
-        border: `1px solid ${darkMode ? "rgba(255,255,255,0.07)" : "rgba(0,0,0,0.07)"}`,
-        background: darkMode
-          ? "linear-gradient(155deg, #0d0d1a 0%, #140808 55%, #0d0d1a 100%)"
-          : "#fafafa",
-        overflow: "hidden", cursor: "default", height: "330px",
-      }}>
+          border: `1px solid ${darkMode ? "rgba(255,255,255,0.07)" : "rgba(0,0,0,0.07)"}`,
+          background: darkMode
+            ? "linear-gradient(155deg, #0d0d1a 0%, #140808 55%, #0d0d1a 100%)"
+            : "#fafafa",
+          overflow: "hidden", cursor: "default", height: "330px",
+        }}
+      >
 
         {/* invisible scroll driver */}
         <div ref={scrollSentinelRef} className="hj-sentinel">
           <div style={{ width: `${totalWidth}px`, height: "1px" }} />
         </div>
 
+        {/* arrow buttons */}
         <button
-        onClick={() => scrollToIndex(activeIndex - 1)}
-        disabled={activeIndex === 0}
-        aria-label="Previous station"
-        style={{
-          position: "absolute", left: "10px", top: "50%",
-          transform: "translateY(-50%)", zIndex: 20,
-          width: "34px", height: "34px", borderRadius: "50%",
-          border: `1px solid ${darkMode ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.15)"}`,
-          background: darkMode ? "rgba(0,0,0,0.4)" : "rgba(255,255,255,0.7)",
-          color: darkMode ? "#fff" : "#1a1a1a",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          cursor: activeIndex === 0 ? "not-allowed" : "pointer",
-          opacity: activeIndex === 0 ? 0.3 : 0.85,
-          transition: "opacity 0.2s ease",
-        }}
-      >
-        <ChevronLeft size={20} />
-      </button>
+          onClick={() => scrollByStep(-1)}
+          disabled={atStart}
+          aria-label="Previous station"
+          style={{
+            position: "absolute", left: "10px", top: "50%",
+            transform: "translateY(-50%)", zIndex: 20,
+            width: "34px", height: "34px", borderRadius: "50%",
+            border: `1px solid ${darkMode ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.15)"}`,
+            background: darkMode ? "rgba(0,0,0,0.4)" : "rgba(255,255,255,0.7)",
+            color: darkMode ? "#fff" : "#1a1a1a",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            cursor: atStart ? "not-allowed" : "pointer",
+            opacity: atStart ? 0.3 : 0.85,
+            transition: "opacity 0.2s ease",
+          }}
+        >
+          <ChevronLeft size={20} />
+        </button>
 
-      <button
-        onClick={() => scrollToIndex(activeIndex + 1)}
-        disabled={activeIndex === journeyItems.length - 1}
-        aria-label="Next station"
-        style={{
-          position: "absolute", right: "10px", top: "50%",
-          transform: "translateY(-50%)", zIndex: 20,
-          width: "34px", height: "34px", borderRadius: "50%",
-          border: `1px solid ${darkMode ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.15)"}`,
-          background: darkMode ? "rgba(0,0,0,0.4)" : "rgba(255,255,255,0.7)",
-          color: darkMode ? "#fff" : "#1a1a1a",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          cursor: activeIndex === journeyItems.length - 1 ? "not-allowed" : "pointer",
-          opacity: activeIndex === journeyItems.length - 1 ? 0.3 : 0.85,
-          transition: "opacity 0.2s ease",
-        }}
-      >
-        <ChevronRight size={20} />
-      </button>
-
+        <button
+          onClick={() => scrollByStep(1)}
+          disabled={atEnd}
+          aria-label="Next station"
+          style={{
+            position: "absolute", right: "10px", top: "50%",
+            transform: "translateY(-50%)", zIndex: 20,
+            width: "34px", height: "34px", borderRadius: "50%",
+            border: `1px solid ${darkMode ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.15)"}`,
+            background: darkMode ? "rgba(0,0,0,0.4)" : "rgba(255,255,255,0.7)",
+            color: darkMode ? "#fff" : "#1a1a1a",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            cursor: atEnd ? "not-allowed" : "pointer",
+            opacity: atEnd ? 0.3 : 0.85,
+            transition: "opacity 0.2s ease",
+          }}
+        >
+          <ChevronRight size={20} />
+        </button>
 
         {/* visual canvas */}
         <div style={{
