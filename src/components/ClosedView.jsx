@@ -2,7 +2,7 @@ import React from "react";
 
 export default function ClosedView({ navigateTo }) {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center font-mono text-lg text-neutral-500 animate-fadeIn">
+    <div className="flex-1 flex flex-col items-center justify-center font-mono text-lg text-neutral-500 animate-fadeIn">
       <p>Terminal closed - click to reopen</p>
       <button
         onClick={() => navigateTo("home")}

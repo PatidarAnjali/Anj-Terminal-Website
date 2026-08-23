@@ -18,7 +18,7 @@ export default function HomePage({ darkMode, setDarkMode, navigateTo, colors, ha
   }, [typed, hasTypedOnce, setHasTypedOnce]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-6">
+    <div className="flex-1 flex items-center justify-center px-6">
       <div className="max-w-3xl w-full animate-fadeIn">
         <div className={`${colors.cardBg} ${colors.borderColor} border rounded-lg shadow-xl overflow-hidden transform transition-all duration-500 hover:scale-[1.02]`}>
           <TerminalHeader 

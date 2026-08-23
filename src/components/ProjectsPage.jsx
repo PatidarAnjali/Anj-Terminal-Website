@@ -60,7 +60,7 @@ export default function ProjectsPage({ darkMode, navigateTo, colors }) {
   }, [selectedCategory]);
 
   return (
-    <div className="min-h-screen py-24 px-6">
+    <div className="flex-1 py-24 px-6">
       <div className="max-w-4xl mx-auto">
         <BackButton navigateTo={navigateTo} accentColor={colors.accentColor} />
         <PageHeader title="Projects" darkMode={darkMode} textColor={colors.textColor} />

@@ -34,7 +34,7 @@ export default function ResumePage({ darkMode, navigateTo, colors }) {
 
 
  return (
-   <div className="min-h-screen py-24 px-5">
+   <div className="flex-1 py-24 px-5">
      <div className="max-w-3xl mx-auto">
 
 
@@ -148,4 +148,5 @@ export default function ResumePage({ darkMode, navigateTo, colors }) {
    </div>
  );
 }
+
 

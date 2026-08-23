@@ -8,7 +8,7 @@ export default function AboutPage({ darkMode, navigateTo, colors }) {
   const [bioRef, bioInView] = useInView(0.1);
 
   return (
-    <div className="min-h-screen py-24 px-6">
+    <div className="flex-1 py-24 px-6">
       <div className="max-w-3xl mx-auto">
         <BackButton navigateTo={navigateTo} accentColor={colors.accentColor} />
         <PageHeader title="About Me" darkMode={darkMode} textColor={colors.textColor} />

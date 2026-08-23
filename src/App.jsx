@@ -44,8 +44,8 @@ const navigateTo = (page) => {
   const pageProps = { darkMode, navigateTo, colors, hasTypedOnce, setHasTypedOnce, setDarkMode };
 
   return (
-    <div className={`${colors.bgColor} ${colors.textColor} transition-colors duration-300 min-h-screen`}>
-      <div className={`transition-opacity duration-300 ${isTransitioning ? "opacity-0" : "opacity-100"}`}>
+    <div className={`${colors.bgColor} ${colors.textColor} transition-colors duration-300 min-h-screen flex flex-col`}>
+      <div className={`flex-1 flex flex-col transition-opacity duration-300 ${isTransitioning ? "opacity-0" : "opacity-100"}`}>
         {currentPage === "home" && <HomePage {...pageProps} />}
         {currentPage === "about" && <AboutPage {...pageProps} />}
         {currentPage === "projects" && <ProjectsPage {...pageProps} />}
@@ -55,9 +55,11 @@ const navigateTo = (page) => {
         {currentPage === "maximized" && <MaximizedView navigateTo={navigateTo} />}
       </div>
 
-      <footer className={`py-8 text-center ${colors.secondaryText} text-sm`}>
-        © 2026 Anjali Patidar
-      </footer>
+      {currentPage !== "maximized" && (
+        <footer className={`pt-6 pb-4 text-center ${colors.secondaryText} text-sm shrink-0`}>
+          © 2026 Anjali Patidar
+        </footer>
+      )}
     </div>
   );
 }

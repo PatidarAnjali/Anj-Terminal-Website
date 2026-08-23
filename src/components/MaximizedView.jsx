@@ -161,7 +161,7 @@ export default function MaximizedView({ navigateTo }) {
   };
 
   return (
-    <div className="min-h-screen bg-neutral-950 flex flex-col">
+    <div className="flex-1 bg-neutral-950 flex flex-col">
       <div className="flex-1 flex flex-col bg-neutral-950 text-emerald-400 font-mono text-sm">
         
         <div className="flex justify-between items-center px-4 py-2 border-b border-neutral-800 bg-neutral-900">
