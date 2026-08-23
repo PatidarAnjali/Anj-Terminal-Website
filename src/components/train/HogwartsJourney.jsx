@@ -59,7 +59,7 @@ export default function HogwartsJourney({ darkMode = true }) {
   // adjust trains left position depending on direction
   const trainLeft = facingRight
     ? trainX - TRAIN_W * 0.94
-    : trainX - TRAIN_W * 0.67;
+    : trainX - TRAIN_W * 0.26;
 
   // center oft train (detect nearest station)
   const trainCenter = trainLeft + TRAIN_W / 2;
@@ -79,28 +79,41 @@ export default function HogwartsJourney({ darkMode = true }) {
     el.scrollBy({ left: direction * SCROLL_STEP, behavior: "smooth" });
   }, []);
 
-  // handles horizontal scroll updates
+  // jump directly to a station's position (used by the dot indicators)
+  const scrollToIndex = useCallback((idx) => {
+    const el = scrollSentinelRef.current;
+    if (!el) return;
+
+    const max = el.scrollWidth - el.clientWidth;
+    const pct = (stopPositions[idx] - firstStop) / (lastStop - firstStop || 1);
+
+    el.scrollTo({ left: pct * max, behavior: "smooth" });
+  }, [stopPositions, firstStop, lastStop]);
+
+  // wheel spin should track "meaningful" movement only
+  const MIN_ROLL_DELTA = 1.76;
+
   const handleScroll = useCallback(() => {
     const el = scrollSentinelRef.current;
     if (!el) return;
 
-    const max = el.scrollWidth - el.clientWidth; // max scrollable length
-    const pct = max > 0 ? el.scrollLeft / max : 0; // convert scroll position -> percentage
+    const max = el.scrollWidth - el.clientWidth;
+    const pct = max > 0 ? el.scrollLeft / max : 0;
+    const delta = el.scrollLeft - lastScrollX.current;
 
-    // determine direction
-    setFacingRight(el.scrollLeft >= lastScrollX.current);
+    setFacingRight(delta >= 0);
     lastScrollX.current = el.scrollLeft;
 
     setScrollPct(pct);
-    setRolling(true); // trigger rolling animation
-
-    // track edges so we can disable the arrow buttons
     setAtStart(el.scrollLeft <= 0);
     setAtEnd(el.scrollLeft >= max - 1);
 
-    // stop rolling after user stops scrolling (debounce)
-    if (stopTimerRef.current) clearTimeout(stopTimerRef.current);
-    stopTimerRef.current = setTimeout(() => setRolling(false), 350);
+    // only real movement resets the "keep spinning" timer
+    if (Math.abs(delta) >= MIN_ROLL_DELTA) {
+      setRolling(true);
+      if (stopTimerRef.current) clearTimeout(stopTimerRef.current);
+      stopTimerRef.current = setTimeout(() => setRolling(false), 120);
+    }
   }, []);
 
   // keyboard arrow nav, only active while hovering the train
@@ -352,10 +365,42 @@ export default function HogwartsJourney({ darkMode = true }) {
         </div>
       </div>
 
+      {/* progress dots */}
+      <div style={{
+        display: "flex", justifyContent: "center", alignItems: "center",
+        gap: "9px", marginTop: "21px", marginBottom: "-8.5px",
+      }}>
+        {journeyItems.map((stop, idx) => {
+          const isActive = idx === nearestIndex;
+          return (
+            <button
+              key={idx}
+              onClick={() => scrollToIndex(idx)}
+              aria-label={`Go to ${stop.org}, ${stop.year}`}
+              title={`${stop.year} · ${stop.org}`}
+              style={{
+                width: isActive ? "10px" : "7px",
+                height: isActive ? "10px" : "7px",
+                borderRadius: "50%",
+                border: "none",
+                padding: 0,
+                cursor: "pointer",
+                background: isActive
+                  ? (darkMode ? "#34d399" : "#059669")
+                  : darkMode ? "rgba(255,255,255,0.22)" : "rgba(0,0,0,0.2)",
+                boxShadow: isActive ? `0 0 10px ${accentDim}` : "none",
+                transition: "all 0.3s ease",
+              }}
+            />
+          );
+        })}
+      </div>
+
       {/* station card */}
       <div style={{ marginTop: "26px" }}>
         <StationCard item={item} visible={cardVisible} darkMode={darkMode} />
       </div>
+
     </div>
   );
 }
