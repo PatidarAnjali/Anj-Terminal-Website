@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { GraduationCap, Music, Code2, Users, Rss, Film, Compass, Utensils, Disc3, X } from "lucide-react";
 import { useInView } from "../utils/hooks";
 
@@ -103,6 +103,22 @@ const BOOKS = [
   },
 ];
 
+// tracks whether the viewport is below `breakpoint`, matching the `sm:`
+// tailwind prefix used elsewhere in this component (640px)
+function useIsMobile(breakpoint = 640) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mq = window.matchMedia(`(max-width: ${breakpoint - 1}px)`);
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, [breakpoint]);
+
+  return isMobile;
+}
 
 function BookBody({ book, colors }) {
   return (
@@ -119,13 +135,13 @@ function BookBody({ book, colors }) {
           return (
             <div key={i} className={`text-sm ${colors.secondaryText}`}>
               <span style={{ color: book.color, fontWeight: 600 }}>{line.label}:</span>{" "}
-              <a
+              
                 href={line.href}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:underline"
                 style={{ color: book.color }}
-              >
+              <a>
                 {line.text}
               </a>
             </div>
@@ -148,7 +164,6 @@ function BookBody({ book, colors }) {
   );
 }
 
-
 function Spine({ book, isOpen, isInView, index, onClick }) {
   const Icon = book.icon;
   const angle = book.orientation === "lean" ? book.angle : 0;
@@ -158,7 +173,6 @@ function Spine({ book, isOpen, isInView, index, onClick }) {
   const leanClearance = Math.abs(angle) > 0 ? Math.round(Math.abs(Math.sin((angle * Math.PI) / 180)) * 150) : 0;
   const marginLeft = angle < 0 ? leanClearance : 0;
   const marginRight = angle > 0 ? leanClearance : 0;
-
 
   return (
     <button
@@ -196,7 +210,6 @@ function Spine({ book, isOpen, isInView, index, onClick }) {
   );
 }
 
-
 function FlatBook({ book, isOpen, isInView, index, onClick }) {
   const Icon = book.icon;
   return (
@@ -208,7 +221,7 @@ function FlatBook({ book, isOpen, isInView, index, onClick }) {
       style={{
         width: 150,
         height: 30,
-        marginBottom: index * 4,
+        marginBottom: (index % 2) * 4,
         background: `linear-gradient(180deg, ${book.color} 0%, ${book.color} 80%, rgba(0,0,0,0.25) 100%)`,
         boxShadow: isOpen
           ? `0 10px 18px rgba(0,0,0,0.35), 0 0 0 2px ${CREAM}`
@@ -230,6 +243,56 @@ function FlatBook({ book, isOpen, isInView, index, onClick }) {
   );
 }
 
+// one physical shelf: a row of upright/leaning spines plus flat stacks,
+// sitting on its own wooden board. rendering more than one of these
+// (each with its own board) is what makes the "second shelf" on mobile.
+function ShelfRow({ books, flatStacks, isInView, startIndex, openId, setOpenId, woodBoard, minHeight }) {
+  return (
+    <div className="relative flex items-end gap-1 pb-3 flex-wrap" style={{ minHeight }}>
+      {books.map((book, i) => (
+        <Spine
+          key={book.id}
+          book={book}
+          isOpen={openId === book.id}
+          isInView={isInView}
+          index={startIndex + i}
+          onClick={() => setOpenId(openId === book.id ? null : book.id)}
+        />
+      ))}
+
+      {flatStacks.map((stack, s) => (
+        <div key={s} className="relative flex flex-col-reverse ml-1" style={{ minWidth: 150, height: 100 }}>
+          {stack.map((book, i) => (
+            <FlatBook
+              key={book.id}
+              book={book}
+              isOpen={openId === book.id}
+              isInView={isInView}
+              index={startIndex + s * 2 + i}
+              onClick={() => setOpenId(openId === book.id ? null : book.id)}
+            />
+          ))}
+        </div>
+      ))}
+
+      {/* the wooden shelf board itself, with a cast shadow underneath for depth */}
+      <div
+        className="absolute left-0 right-0"
+        style={{
+          bottom: 0,
+          height: 10,
+          background: woodBoard,
+          borderRadius: "6px",
+          boxShadow: "0 2px 3px rgba(0,0,0,0.5)",
+        }}
+      />
+      <div
+        className="absolute left-0 right-0"
+        style={{ bottom: -8, height: 8, background: "linear-gradient(to bottom, rgba(0,0,0,0.4), transparent)" }}
+      />
+    </div>
+  );
+}
 
 function DetailPanel({ book, colors, onClose }) {
   if (!book) return null;
@@ -243,7 +306,6 @@ function DetailPanel({ book, colors, onClose }) {
       >
         {/* the book's own cover color, down the left edge */}
         <div className="absolute left-0 top-0 bottom-0 w-1.5" style={{ backgroundColor: book.color }} />
-
 
         <div className="flex items-start justify-between px-6 pt-5 pb-3">
           <div className="flex items-center gap-2">
@@ -262,10 +324,10 @@ function DetailPanel({ book, colors, onClose }) {
   );
 }
 
-
 export default function BookShelf({ colors }) {
   const [openId, setOpenId] = useState(null);
   const [shelfRef, shelfInView] = useInView(0.1);
+  const isMobile = useIsMobile();
 
   const upright = BOOKS.filter((b) => b.orientation === "upright" || b.orientation === "lean");
   const flat = BOOKS.filter((b) => b.orientation === "flat");
@@ -283,58 +345,51 @@ export default function BookShelf({ colors }) {
 
   return (
     <div>
-
       <div
         ref={shelfRef}
         className={`relative w-full rounded-xl shadow-xl overflow-hidden px-6 sm:px-10 pt-8 pb-10 border ${colors.borderColor} ${colors.bgColor}`}
       >
-        <div className="relative flex items-end gap-1 pb-3 flex-wrap" style={{ minHeight: 220 }}>
-          {upright.map((book, i) => (
-            <Spine
-              key={book.id}
-              book={book}
-              isOpen={openId === book.id}
+        {isMobile ? (
+          // mobile: give the wrapped rows their own shelves, stacked
+          // vertically like an actual bookcase
+          <div className="flex flex-col gap-12">
+            <ShelfRow
+              books={upright}
+              flatStacks={[]}
               isInView={shelfInView}
-              index={i}
-              onClick={() => setOpenId(openId === book.id ? null : book.id)}
+              startIndex={0}
+              openId={openId}
+              setOpenId={setOpenId}
+              woodBoard={woodBoard}
+              minHeight={190}
             />
-          ))}
-
-          {flatStacks.map((stack, s) => (
-            <div key={s} className="relative flex flex-col-reverse ml-1" style={{ minWidth: 150, height: 100 }}>
-              {stack.map((book, i) => (
-                <FlatBook
-                  key={book.id}
-                  book={book}
-                  isOpen={openId === book.id}
-                  isInView={shelfInView}
-                  index={s * 2 + i}
-                  onClick={() => setOpenId(openId === book.id ? null : book.id)}
-                />
-              ))}
-            </div>
-          ))}
-
-          {/* the wooden shelf board itself, with a cast shadow underneath for depth */}
-          <div
-            className="absolute left-0 right-0"
-            style={{
-              bottom: 0,
-              height: 10,
-              background: woodBoard,
-              borderRadius: "6px",
-              boxShadow: "0 2px 3px rgba(0,0,0,0.5)",
-            }}
+            <ShelfRow
+              books={[]}
+              flatStacks={flatStacks}
+              isInView={shelfInView}
+              startIndex={upright.length}
+              openId={openId}
+              setOpenId={setOpenId}
+              woodBoard={woodBoard}
+              minHeight={120}
+            />
+          </div>
+        ) : (
+          // desktop: everything fits on one shelf
+          <ShelfRow
+            books={upright}
+            flatStacks={flatStacks}
+            isInView={shelfInView}
+            startIndex={0}
+            openId={openId}
+            setOpenId={setOpenId}
+            woodBoard={woodBoard}
+            minHeight={220}
           />
-          <div
-            className="absolute left-0 right-0"
-            style={{ bottom: -8, height: 8, background: "linear-gradient(to bottom, rgba(0,0,0,0.4), transparent)" }}
-          />
-        </div>
+        )}
 
         <DetailPanel book={activeBook} colors={colors} onClose={() => setOpenId(null)} />
       </div>
     </div>
   );
 }
-
