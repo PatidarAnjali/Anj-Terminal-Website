@@ -135,13 +135,13 @@ function BookBody({ book, colors }) {
           return (
             <div key={i} className={`text-sm ${colors.secondaryText}`}>
               <span style={{ color: book.color, fontWeight: 600 }}>{line.label}:</span>{" "}
-              
+              <a
                 href={line.href}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:underline"
                 style={{ color: book.color }}
-              <a>
+              >
                 {line.text}
               </a>
             </div>
