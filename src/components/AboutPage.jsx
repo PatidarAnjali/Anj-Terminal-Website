@@ -3,7 +3,7 @@ import { useInView } from "../utils/hooks";
 import BackButton from "./shared/BackButton";
 import PageHeader from "./shared/PageHeader";
 import HogwartsJourney from "./train/HogwartsJourney";
-import BookShelf from "./BookShelf";
+import BookShelf from "./BookShelf.jsx";
 
 
 export default function AboutPage({ darkMode, navigateTo, colors }) {

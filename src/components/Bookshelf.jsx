@@ -286,7 +286,7 @@ export default function BookShelf({ colors }) {
 
       <div
         ref={shelfRef}
-        className={`relative w-full rounded-xl shadow-xl overflow-hidden px-6 sm:px-10 pt-16 pb-10 border ${colors.borderColor} ${colors.bgColor}`}
+        className={`relative w-full rounded-xl shadow-xl overflow-hidden px-6 sm:px-10 pt-8 pb-10 border ${colors.borderColor} ${colors.bgColor}`}
       >
         <div className="relative flex items-end gap-1 pb-3 flex-wrap" style={{ minHeight: 220 }}>
           {upright.map((book, i) => (
