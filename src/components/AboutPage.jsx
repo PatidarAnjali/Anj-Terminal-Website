@@ -3,9 +3,12 @@ import { useInView } from "../utils/hooks";
 import BackButton from "./shared/BackButton";
 import PageHeader from "./shared/PageHeader";
 import HogwartsJourney from "./train/HogwartsJourney";
+import BookShelf from "./BookShelf";
+
 
 export default function AboutPage({ darkMode, navigateTo, colors }) {
   const [bioRef, bioInView] = useInView(0.1);
+
 
   return (
     <div className="flex-1 py-24 px-6">
@@ -13,72 +16,44 @@ export default function AboutPage({ darkMode, navigateTo, colors }) {
         <BackButton navigateTo={navigateTo} accentColor={colors.accentColor} />
         <PageHeader title="About Me" darkMode={darkMode} textColor={colors.textColor} />
 
-        <div ref={bioRef} className="space-y-8">
-          <p
-            className={`text-xl leading-relaxed ${colors.textColor} transition-all duration-700 ${
-              bioInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            }`}
-            style={{ transitionDelay: "0.1s" }}
-          >
-            Hi! I'm Anjali, a third-year Software Engineering (& Stats) student at UofT.
-            I love building things, solving problems through code, blogging and making amazing, really funny jokes.
-          </p>
 
-          <p
-            className={`text-lg leading-relaxed ${colors.secondaryText} transition-all duration-700 ${
+        <div ref={bioRef} className="space-y-10">
+
+          {/* bookshelf section */}
+          <div
+            className={`transition-all duration-700 ${
               bioInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}
             style={{ transitionDelay: "0.2s" }}
           >
-            I got into programming after building a tiny Java game in high school. It worked… most of the time.
-            But that project hooked me, and now I spend way too many hours debugging things I created myself.
-          </p>
-
-          <p
-            className={`text-lg leading-relaxed ${colors.secondaryText} transition-all duration-700 ${
-              bioInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            }`}
-            style={{ transitionDelay: "0.3s" }}
-          >
-            When I'm not coding, you'll find me reading, playing guitar, baking, scrolling pinterest,
-            or checking out one of the 6-7 new food spots I've been wanting to try. I also like to blog 
-            (since I don't have time to finish my novel from grade 10):{" "}
-              <a 
-                href="https://medium.com/@anjali.ckpatidar"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "4px",
-                  color: colors.accentColor,
-                  fontSize: "inherit",
-                  textDecoration: "underline",
-                  textUnderlineOffset: "3px",
-                  opacity: 0.9,
-                }}
-              >
-                my Medium page ↗
-              </a>
+            <h2 className={`text-2xl font-bold mb-3 ${colors.textColor}`}>The shelf</h2>
+            <p className={`text-sm mb-6 ${colors.secondaryText}`}>
+              Tap a book to read more!
             </p>
+            <BookShelf darkMode={darkMode} colors={colors} />
+          </div>
+
 
           {/* journey section */}
           <div
             className={`pt-8 transition-all duration-700 ${
               bioInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}
-            style={{ transitionDelay: "0.4s" }}
+            style={{ transitionDelay: "0.3s" }}
           >
-           <h2 className={`text-2xl font-bold mb-6 ${colors.textColor}`}>My journey</h2>
-            <p className={`text-sm mb-8 ${colors.secondaryText}`}>
+            <h2 className={`text-2xl font-bold mb-3 ${colors.textColor}`}>My journey</h2>
+            <p className={`text-sm mb-6 ${colors.secondaryText}`}>
               Scroll the track :)
             </p>
 
-            <HogwartsJourney darkMode= {darkMode} />
-          
+
+            <HogwartsJourney darkMode={darkMode} />
           </div>
+
         </div>
+
       </div>
     </div>
   );
 }
+
