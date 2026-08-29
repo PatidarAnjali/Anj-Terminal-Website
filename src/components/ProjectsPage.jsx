@@ -66,7 +66,7 @@ export default function ProjectsPage({ darkMode, navigateTo, colors }) {
         <PageHeader title="Projects" darkMode={darkMode} textColor={colors.textColor} />
 
         {/* filter btns */}
-        <div className="mb-8">
+        <div className="mb-10">
           <div className="flex flex-wrap gap-3">
             {categories.map(category => (
               <button
@@ -85,7 +85,7 @@ export default function ProjectsPage({ darkMode, navigateTo, colors }) {
         </div>
 
         {/* projects list */}
-        <div className="space-y-10">
+        <div className="space-y-9">
           {filteredProjects.length > 0 ? (
             filteredProjects.map((project, i) => (
               <ProjectItem key={i} project={project} index={i} colors={colors} />

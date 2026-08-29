@@ -228,9 +228,11 @@ export const projects = [
 
 
 export const skills = {
-  'Languages': ['Java', 'TypeScript', 'JavaScript', 'Python', 'C', 'C++'],
-  'Frontend': ['React', 'Angular', 'HTML/CSS', 'Bootstrap'],
-  'Backend': ['Node.js', 'MongoDB', 'REST APIs', 'Git']
+  'Languages': ['Java', 'TypeScript', 'JavaScript', 'Python', 'C', 'C++', 'SQL'],
+  'Frontend': ['React', 'Angular', 'Next.js', 'HTML/CSS', 'Tailwind CSS', 'Bootstrap'],
+  'Backend': ['Node.js', 'Express', 'Flask', 'GraphQL', 'REST APIs'],
+  'Databases': ['MongoDB', 'PostgreSQL', 'SQLite', 'Firebase'],
+  'Tools & DevOps': ['Git', 'Docker', 'Redis', 'VS Code'],
 };
 
 
