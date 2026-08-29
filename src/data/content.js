@@ -145,6 +145,14 @@ export const journeyItems = [
 
 export const projects = [
   {
+    title: 'Page Fault (Systems/GPU)',
+    tech: 'CUDA • C++ • GPU Memory Management • CMake • Paged Attention • LLMs',
+    desc: 'Systems project that explores OS-style virtual memory paging for LLMs using CUDA, focusing on GPU memory management and paged attention.',
+    year: '2026',
+    link: 'https://github.com/PatidarAnjali/Page-fault',
+    filter: 'ML/AI'
+  },
+  {
     title: 'Marketplace Platform',
     tech: 'MongoDB • ExpressJS • GraphQL • Angular • NodeJS',
     desc: 'Full MEAN stack e-commerce web app that supports the full commerce lifecycle',
